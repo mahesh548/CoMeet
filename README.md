@@ -1,12 +1,85 @@
-## Created with Capacitor Create App
+# CoMeet - Peer-to-Peer Audio/Video Calling App
 
-This app was created using [`@capacitor/create-app`](https://github.com/ionic-team/create-capacitor-app),
-and comes with a very minimal shell for building an app.
+CoMeet is a high-quality, feature-rich, peer-to-peer audio and video calling application designed for seamless communication between users. With the added bonus of interactive stickers, real-time language translation, and excellent video quality, CoMeet is the go-to app for staying connected with friends, family, and colleagues.
 
-### Running this example
+## Features
 
-To run the provided example, you can use `npm start` command.
+- **High-quality Audio/Video Calls**: Enjoy crystal-clear audio and video calls with low latency, perfect for personal and professional use.
+- **Interactive Stickers**: Spice up your calls with a variety of fun and interactive stickers to make your calls more enjoyable.
+- **AI-powered Language Translation**: Communicate with others across language barriers with real-time translation during video calls.
+- **Picture-in-Picture Mode**: Stay multitasking while on a call with Picture-in-Picture mode.
+- **Call Notifications**: Never miss an incoming call with smart push notifications.
+- **Block Callers**: Easily block users who aren't on your contact list for added privacy.
 
-```bash
-npm start
-```
+## Tech Stack
+
+- **Frontend**:
+  - **Vanilla JavaScript** (for custom interactive functionality)
+  - **HTML** & **CSS** (for the structure and styling of the app)
+  - **Bootstrap** (for responsive design and UI components)
+  - Extensive **Custom CSS** (for personalized styles and branding)
+- **Backend**:
+
+  - **Flask (Python)** – A lightweight framework for building RESTful APIs and handling server-side functionality.
+  - The original backend code was built using **Flask** to handle user data and communication between clients. However, the code is not included in the repository, as it is being replaced by a **Node.js backend** for better scalability and performance.
+
+- **Cloud Storage**:
+  - Firebase (for notifications and real-time data synchronization)
+- **Third-Party Services**:
+  - Azure Cognitive Services (for AI-powered language translation)
+- **Deployment**:
+  - Google Play Store (app distribution)
+
+## Installation
+
+### Prerequisites
+
+- Node.js (v14+)
+- Android Studio (for building the app on Android)
+
+### Steps to Run Locally
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/your-username/CoMeet.git
+   ```
+
+2. Navigate into the project directory:
+
+   ```bash
+   cd CoMeet
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Run the app:
+
+   ```bash
+   npx cap open android
+   ```
+
+   This will open the project in Android Studio. You can now build and run the app on an Android emulator or a physical device.
+
+## Screenshots
+
+![CoMeet - Home Screen](https://github.com/mahesh548/CoMeet/blob/main/playstore/Graphics/Phone/1.png?raw=true)
+_Sync contacs for easy access and instant calls_
+
+![CoMeet - Video Call](https://github.com/mahesh548/CoMeet/blob/main/playstore/Graphics/Phone/4.png?raw=true)
+_Break language barriers on call with live translation_
+
+![CoMeet - Video Call](https://github.com/mahesh548/CoMeet/blob/main/playstore/Graphics/Phone/3.png?raw=true)
+_Add some fun to your call with some playful stickers_
+
+## Contributing
+
+Feel free to fork this repository, submit issues, and create pull requests. Contributions are welcome!
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
