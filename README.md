@@ -67,24 +67,14 @@ CoMeet is a high-quality, feature-rich, peer-to-peer audio and video calling app
 
 ## Screenshots
 
-<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 100%;">
+<img src="https://github.com/mahesh548/CoMeet/blob/main/playstore/Graphics/Phone/1.png?raw=true" alt="CoMeet - Home Screen" width="200"/>
+*Sync contacts for easy access and instant calls*
 
-  <div style="text-align: center;">
-    <img src="https://github.com/mahesh548/CoMeet/blob/main/playstore/Graphics/Phone/1.png?raw=true" alt="CoMeet - Home Screen" style="width: 100%;"/>
-    <p>Sync contacts for easy access and instant calls</p>
-  </div>
+<img src="https://github.com/mahesh548/CoMeet/blob/main/playstore/Graphics/Phone/4.png?raw=true" alt="CoMeet - Video Call" width="200"/>
+*Break language barriers on call with live translation*
 
-  <div style="text-align: center;">
-    <img src="https://github.com/mahesh548/CoMeet/blob/main/playstore/Graphics/Phone/4.png?raw=true" alt="CoMeet - Video Call" style="width: 100%;"/>
-    <p>Break language barriers on call with live translation</p>
-  </div>
-
-  <div style="text-align: center;">
-    <img src="https://github.com/mahesh548/CoMeet/blob/main/playstore/Graphics/Phone/3.png?raw=true" alt="CoMeet - Video Call" style="width: 100%;"/>
-    <p>Add some fun to your call with playful stickers</p>
-  </div>
-
-</div>
+<img src="https://github.com/mahesh548/CoMeet/blob/main/playstore/Graphics/Phone/3.png?raw=true" alt="CoMeet - Video Call" width="200"/>
+*Add some fun to your call with playful stickers*
 
 ## Contributing
 
