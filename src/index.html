@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0px;
+            padding: 0px;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+<div style="height: 100vh;width: 100vw;display: grid;align-items: center;justify-content: center;">
+    <div class="spinner-border" role="status" style="
+    color: wheat; height: 50px; width: 50px;
+">
+        <span class="visually-hidden" >Loading...</span>
+    </div>
+</div>
+<script>
+    setTimeout(()=>{
+        var auth = localStorage.getItem("SESSION");
+        if (auth == null) {
+            localStorage.clear()
+            window.location.href = "landing.html"
+        } else {
+            window.location.href = "dialer.html"
+
+        }
+    },1000)
+ 
+</script>
+   
+</body>
+</html>

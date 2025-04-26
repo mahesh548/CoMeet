@@ -1,0 +1,42 @@
+[
+  {
+    "9696278019": {
+      "history": [
+        {
+          "number": "9696278019",
+          "type": "video",
+          "status": "missed",
+          "when": "user does not recieved the call",
+          "symbol": "incoming arrow red",
+          "time": "21/02/2021 at 9 PM"
+        },
+        {
+          "number": "9696278019",
+          "type": "video",
+          "status": "accepted",
+          "duration": "9 min",
+          "when": "when incoming call connected",
+          "symbol": "incoming arrow green",
+          "time": "21/02/2021 at 9 PM"
+        },
+        {
+          "number": "9696278019",
+          "type": "video",
+          "status": "dialed",
+          "duration": "9 min",
+          "when": "when dialed call connected",
+          "symbol": "outgoing arrow green",
+          "time": "21/02/2021 at 9 PM"
+        },
+        {
+          "number": "9696278019",
+          "type": "video",
+          "status": "rejected",
+          "when": "when dialed called does not connected",
+          "symbol": "outgoing arrow white",
+          "time": "21/02/2021 at 9 PM"
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "477680010626",
+    "project_id": "test-notification-bcacc",
+    "storage_bucket": "test-notification-bcacc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:477680010626:android:2647c7475bb28d2d873b9b",
+        "android_client_info": {
+          "package_name": "com.call.comrade"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWPTKWdROCZqva7l-2y7l7yAcb5jqt6IE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

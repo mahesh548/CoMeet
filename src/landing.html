@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/landing.css" />
+    <link rel="stylesheet" href="./css/material-symbols/index.css" />
+  </head>
+  <body>
+    <div class="cont">
+      <span>CoMeet Call</span>
+      <div class="gradient">
+        <img src="./assets/imgs/logo_app.png" class="logo" alt="" />
+      </div>
+      <button class="startBut" id="startBut">
+        Get Started
+        <span class="material-symbols-outlined"> arrow_forward </span>
+      </button>
+    </div>
+
+    <script type="module">
+      import { Sim } from "@jonz94/capacitor-sim";
+      document.getElementById("startBut").addEventListener("click", () => {
+        getNum();
+      });
+      async function getNum() {
+        const { simCards } = await Sim.getSimCards();
+        window.location.href = "number.html";
+        //     if (simCards.length > 1) {
+        //         window.location.href="number.html"
+
+        // }else{
+        //         const num=simCards[0]["number"];
+        //         localStorage.setItem("sim", num.slice(2, 12));
+        //        window.location.href="signup.html";
+        // }
+      }
+    </script>
+  </body>
+</html>
+<!-- example@test.com -->

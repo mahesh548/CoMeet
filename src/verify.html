@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300..700&display=swap");
+      body {
+        margin: 0px;
+        padding: 0px;
+        background-color: black;
+        font-family: "Signika Negative", sans-serif;
+      }
+      :root {
+        --primary-color: wheat;
+      }
+      .cont {
+        width: 90vw;
+        display: grid;
+        align-items: center;
+        align-content: center;
+        justify-items: center;
+        margin: auto;
+        row-gap: 10px;
+      }
+      .pageTag {
+        color: wheat;
+      }
+      .info {
+        color: #ffffffb3;
+        text-align: left;
+        font-size: 14px;
+        margin-top: 50px;
+        margin-bottom: 0px;
+      }
+      .otp {
+        background-color: #50493f;
+        border: 1.5px solid #ffffff40;
+        height: 40px;
+        outline: none;
+        width: 98%;
+        border-radius: 12px;
+        margin-top: 15px;
+        padding: 5px;
+        color: white;
+        padding-left: 10px;
+        font-weight: bold;
+      }
+      .otp::placeholder {
+        color: #ffffff9e;
+        padding-left: 10px;
+        font-weight: bold;
+      }
+      .but {
+        background-color: var(--primary-color);
+        height: 50px;
+        border: 0px;
+        width: 100%;
+        font-weight: bold;
+        color: black;
+        border-radius: 40px;
+        font-size: 18px;
+        padding: 5px;
+        letter-spacing: 1px;
+        margin-top: 15px;
+      }
+      .tag {
+        margin: 0px;
+        margin-bottom: 0px;
+        font-size: 12px;
+        color: red;
+        text-align: left;
+        width: 100%;
+        margin-top: 3px;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cont">
+      <p class="pageTag">Veify login</p>
+      <p class="info">
+        We have sent a four digit OTP to your email,that will only valid for
+        10min.
+      </p>
+      <input
+        type="number"
+        name=""
+        id="otp"
+        class="otp"
+        placeholder="Enter Four Digit OTP"
+      />
+      <p class="tag" id="otpTag">Invalid OTP!</p>
+      <button class="but" id="login">login</button>
+    </div>
+    <script type="module" src="./js/utils.js"></script>
+    <script>
+      document.getElementById("login").addEventListener("click", () => {
+        const otp = document.getElementById("otp").value;
+        if (otp.length == 4) {
+          document.getElementById("otpTag").style.display = "none";
+          verify(otp);
+        } else {
+          document.getElementById("otpTag").style.display = "block";
+        }
+      });
+
+      async function verify(otp) {
+        const phoneNumber = localStorage.getItem("sim");
+        var data = {};
+        if (localStorage.getItem("temp_data")) {
+          const temp_data = JSON.parse(localStorage.getItem("temp_data"));
+          data = {
+            num: phoneNumber,
+            OTP: otp,
+            name: temp_data.name,
+            email: temp_data.email,
+            pic: "_default_",
+          };
+        } else {
+          data = {
+            num: phoneNumber,
+            OTP: otp,
+          };
+        }
+        makeReq2(data);
+      }
+
+      async function makeReq2(data) {
+        const url = "https://comradeeco.pythonanywhere.com/comeet/verify_otp";
+        const response = await fetchApi(url, data);
+        if (response.status) {
+          await localStorage.setItem("SESSION", response.SESSION);
+          await localStorage.removeItem("temp_data");
+          window.location.href = "dialer.html";
+        } else {
+          document.getElementById("otpTag").style.display = "block";
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        sendOtp();
+      });
+
+      async function sendOtp() {
+        const num = localStorage.getItem("sim");
+        var data = {};
+        if (localStorage.getItem("temp_data")) {
+          const temp_data = JSON.parse(localStorage.getItem("temp_data"));
+          data = {
+            name: temp_data.name,
+            email: temp_data.email,
+            num: num,
+          };
+        } else {
+          data = {
+            num: num,
+          };
+        }
+        makeReq(data);
+      }
+      async function makeReq(data) {
+        const url = "https://comradeeco.pythonanywhere.com/comeet/send_otp";
+        const response = await fetchApi(url, data);
+        console.log(response.status);
+      }
+    </script>
+  </body>
+</html>

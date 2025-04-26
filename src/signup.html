@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="./css/material-symbols/index.css" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/signup.css" />
+  </head>
+  <body>
+    <div class="cont">
+      <p class="pageTag">Create Account</p>
+      <div class="logoCont">
+        <img src="./assets/imgs/logo_app.png" alt="" />
+      </div>
+      <div class="formCont">
+        <input
+          type="text"
+          name=""
+          id="name"
+          placeholder="Enter Your Full Name"
+        />
+        <p class="tag" id="nameTag">Name Required*</p>
+        <input
+          type="email"
+          name=""
+          id="email"
+          placeholder="Enter Your Email Adress"
+        />
+        <p class="tag" id="emailTag">Invalid Email</p>
+
+        <button onclick="signUP()">Continue</button>
+      </div>
+      <div class="footer">
+        <button>
+          By cliking continue you are accepting our terms & condition and
+          privacy policy.
+        </button>
+        <img src="./assets/imgs/company.png" alt="" />
+      </div>
+    </div>
+    <script type="module" src="./js/utils.js"></script>
+    <script>
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      async function validateEmail(email) {
+        var result = emailRegex.test(email);
+        console.log(result);
+        if (result != true) {
+          document.getElementById("email").style.border = "1.5px solid red";
+          document.getElementById("emailTag").style.display = "block";
+          document.getElementById("emailTag").innerText = "Invalid Email!";
+        } else {
+          const data = { email: email };
+          const url =
+            "https://comradeeco.pythonanywhere.com/comeet/check_email";
+
+          console.log(response);
+          if (response.status) {
+            document.getElementById("email").style.border = "1.5px solid red";
+            document.getElementById("emailTag").style.display = "block";
+            document.getElementById("emailTag").innerText =
+              "Email Already Exist!";
+            result = false;
+          } else {
+            document.getElementById("email").style.border =
+              "1.5px solid #ffffff40";
+            document.getElementById("emailTag").style.display = "none";
+          }
+        }
+        return result;
+      }
+      function validateName(name) {
+        var result = name.length > 0;
+        if (result != true) {
+          document.getElementById("name").style.border = "1.5px solid red";
+          document.getElementById("nameTag").style.display = "block";
+        } else {
+          document.getElementById("name").style.border =
+            "1.5px solid #ffffff40";
+          document.getElementById("nameTag").style.display = "none";
+        }
+        return result;
+      }
+      async function signUP() {
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        const checkEmail = validateEmail(email);
+        if (validateName(name) && checkEmail) {
+          console.log(email);
+          console.log(name);
+          const mkm = {
+            email: email,
+            name: name,
+          };
+          localStorage.setItem("temp_data", JSON.stringify(mkm));
+          window.location.href = "verify.html";
+        }
+      }
+    </script>
+  </body>
+</html>

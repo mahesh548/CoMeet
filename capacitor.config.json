@@ -1,0 +1,15 @@
+{
+  "appId": "com.call.comrade",
+  "appName": "CoMeet",
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+    "server": {
+    "hostname": "localhost",
+    "iosScheme": "https",
+    "androidScheme": "https"
+  }
+}

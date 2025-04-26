@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <title>Document</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300..700&display=swap");
+      body {
+        margin: 0px;
+        padding: 0px;
+        background-color: black;
+        font-family: "Signika Negative", sans-serif;
+      }
+      .cont {
+        height: 100vh;
+        width: 100vw;
+        display: grid;
+        align-content: stretch;
+        justify-content: center;
+      }
+
+      .num {
+        color: wheat;
+        width: 80vw;
+        display: none;
+        grid-template-columns: 30px max-content;
+        align-items: center;
+        height: 70px;
+        column-gap: 30px;
+        margin-top: 20px;
+        background-color: #ffffff36;
+        border: 0px;
+        border-radius: 12px;
+        padding: 0px 10px;
+        p {
+          margin: 0px;
+          margin-bottom: 0px;
+          text-align: left;
+          margin-top: 3px;
+        }
+        b {
+          font-size: 18px;
+          text-align: left;
+        }
+        span:nth-child(1) {
+          background-color: wheat;
+          color: black;
+          height: 40px;
+          aspect-ratio: 1/1;
+          display: inline-grid;
+          align-content: center;
+          justify-content: center;
+          border-radius: 12px;
+          padding: 3px;
+        }
+      }
+      .pageTag {
+        color: wheat;
+        font-weight: bold;
+        font-size: 18px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cont">
+      <p class="pageTag">Choose Phone Number</p>
+      <div class="numCont" id="numCont">
+        <button class="num" id="sim1but">
+          <span class="material-symbols-outlined"> sim_card </span>
+          <div>
+            <b id="sim1b"></b>
+            <p id="sim1p"></p>
+          </div>
+        </button>
+        <button class="num" id="sim2but">
+          <span class="material-symbols-outlined"> sim_card </span>
+          <div>
+            <b id="sim2b"></b>
+            <p id="sim2p"></p>
+          </div>
+        </button>
+      </div>
+    </div>
+    <script type="module" src="./js/utils.js"></script>
+    <script type="module">
+      import { Sim } from "@jonz94/capacitor-sim";
+      async function getNum() {
+        const { simCards } = await Sim.getSimCards();
+
+        if (simCards[0]) {
+          let x = simCards[0]["number"];
+          document.getElementById("sim1b").innerText = `+91 ${x.slice(
+            x.length - 10,
+            x.length
+          )}`;
+          document.getElementById(
+            "sim1p"
+          ).innerText = `${simCards[0]["carrierName"]} • Sim 1`;
+          document
+            .getElementById("sim1but")
+            .setAttribute(
+              "onclick",
+              `setNum(${x.slice(x.length - 10, x.length)})`
+            );
+          document.getElementById("sim1but").style.display = "grid";
+        } else {
+          document.getElementById("sim1b").style.display = "none";
+        }
+        if (simCards[1]) {
+          let y = simCards[1]["number"];
+          document.getElementById("sim2b").innerText = `+91 ${y.slice(
+            y.length - 10,
+            y.length
+          )}`;
+          document.getElementById(
+            "sim2p"
+          ).innerText = `${simCards[1]["carrierName"]} • Sim 2`;
+          document
+            .getElementById("sim2but")
+            .setAttribute(
+              "onclick",
+              `setNum(${y.slice(x.length - 10, x.length)})`
+            );
+          document.getElementById("sim1but").style.display = "grid";
+        } else {
+          document.getElementById("sim2b").style.display = "none";
+        }
+      }
+      getNum();
+      async function setNum(num) {
+        await localStorage.setItem("sim", num);
+        check_num(num);
+      }
+
+      async function check_num(num) {
+        const data = {
+          phoneNumber: num,
+        };
+        const url = "https://comradeeco.pythonanywhere.com/comeet/check_number";
+        const response = await fetchApi(url, data);
+        if (response.status) {
+          window.location.href = "verify.html";
+        } else {
+          window.location.href = "signup.html";
+        }
+      }
+
+      window.setNum = setNum;
+    </script>
+  </body>
+</html>

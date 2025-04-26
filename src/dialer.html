@@ -1,0 +1,4124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <script
+      src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
+      type="module"
+    ></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <script
+      type="module"
+      src="https://unpkg.com/@ionic/pwa-elements@latest/dist/ionicpwaelements/ionicpwaelements.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/@ionic/pwa-elements@latest/dist/ionicpwaelements/ionicpwaelements.js"
+    ></script>
+
+    <link rel="icon" type="image/x-icon" href="./assets/icon/favicon.ico" />
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <meta name="theme-color" content="#000000" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.4.4/qrcode.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js"
+      integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ=="
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Agbalumo&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.0.0/fabric.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <!-- importants -->
+    <link rel="stylesheet" href="./css/material-symbols/index.css" />
+    <script src="https://cdn.ably.com/lib/ably.min-1.js"></script>
+    <script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="https://aka.ms/csspeech/jsbrowserpackageraw"></script>
+    <title>Dialer</title>
+  </head>
+
+  <body>
+    <audio
+      src="https://comradeEco.pythonanywhere.com/static/beep.mp3"
+      style="display: none"
+      id="beepPlayer"
+    ></audio>
+    <audio
+      src="https://comradeEco.pythonanywhere.com/static/dial.mp3"
+      style="display: none"
+      id="dialPlayer"
+      loop
+    ></audio>
+    <audio
+      src="https://comradeEco.pythonanywhere.com/static/ring.mp3"
+      style="display: none"
+      id="ringPlayer"
+      loop
+    ></audio>
+    <div id="cont"></div>
+    <div id="notiCont"></div>
+
+    <div class="holder" id="holder">
+      <div class="navB_" id="nav">
+        <span class="material-symbols-outlined fill pageIcon" id="callTag">
+          call
+        </span>
+        <span class="material-symbols-outlined fill pageIcon" id="personTag">
+          person
+        </span>
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          stroke="#ffffff"
+          onclick="showSettings()"
+        >
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            <path
+              d="M3 9.11011V14.8801C3 17.0001 3 17.0001 5 18.3501L10.5 21.5301C11.33 22.0101 12.68 22.0101 13.5 21.5301L19 18.3501C21 17.0001 21 17.0001 21 14.8901V9.11011C21 7.00011 21 7.00011 19 5.65011L13.5 2.47011C12.68 1.99011 11.33 1.99011 10.5 2.47011L5 5.65011C3 7.00011 3 7.00011 3 9.11011Z"
+              stroke="#ffffff"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+            <path
+              d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z"
+              stroke="#ffffff"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+          </g>
+        </svg>
+      </div>
+      <div class="wrapCont">
+        <div id="recent" class="recent wrapPages">
+          <div class="searchBar" id="recentSrchBar">
+            <span class="material-symbols-outlined" style="color: #434343">
+              search
+            </span>
+            <input
+              type="text"
+              name=""
+              id="recentSearch"
+              class="searchInput"
+              placeholder="21 contacts"
+              oninput="typingSrch(event)"
+            />
+          </div>
+          <div class="permit" id="permit">
+            <p>Allow Notification</p>
+            <button onclick="askNotify()">allow</button>
+          </div>
+
+          <div class="xxi" id="emptyRecent">
+            <lottie-player
+              src="https://lottie.host/8b6cc26f-6d69-4780-9e7b-9664c18fe3ad/wth2u7pFwd.json"
+              background="##ffffff"
+              speed="1"
+              style="width: 300px; height: 300px"
+              autoplay
+              direction="1"
+              mode="normal"
+            ></lottie-player>
+            <p>No recent calls</p>
+          </div>
+          <button class="fBtn" onclick="displayBlock(['numPad'])">
+            <span class="material-symbols-outlined" style="color: #434343">
+              dialpad
+            </span>
+          </button>
+          <div class="numPad" id="numPad">
+            <div
+              style="
+                display: none;
+                grid-template-columns: auto 40px;
+                height: 60px;
+                padding: 0px 15px;
+                margin-bottom: 20px;
+                margin-top: 5px;
+              "
+              id="fieldCont"
+            >
+              <input class="field" id="field" value="" type="text" readonly />
+              <button class="eraser" onclick="erase()">
+                <span
+                  class="material-symbols-outlined fill"
+                  style="color: #808080a3; font-size: 30px"
+                >
+                  backspace
+                </span>
+              </button>
+            </div>
+            <div class="numCont">
+              <button class="numBut" onclick="press('1')">1</button>
+              <button class="numBut" onclick="press('2')">2</button>
+              <button class="numBut" onclick="press('3')">3</button>
+              <button class="numBut" onclick="press('4')">4</button>
+              <button class="numBut" onclick="press('5')">5</button>
+              <button class="numBut" onclick="press('6')">6</button>
+              <button class="numBut" onclick="press('7')">7</button>
+              <button class="numBut" onclick="press('8')">8</button>
+              <button class="numBut" onclick="press('9')">9</button>
+              <span></span>
+              <button class="numBut" onclick="press('0')">0</button>
+              <span></span>
+            </div>
+            <div class="klj">
+              <button onclick="VideoCallFromNumber()">
+                <span
+                  class="material-symbols-outlined fill"
+                  style="color: white"
+                >
+                  videocam
+                </span>
+              </button>
+              <button
+                style="background-color: wheat"
+                onclick="AudioCallFromNumber()"
+              >
+                <span
+                  class="material-symbols-outlined fill"
+                  style="color: black"
+                >
+                  call
+                </span>
+              </button>
+              <button onclick="hideNumPad()">
+                <span
+                  class="material-symbols-outlined fill"
+                  style="color: white"
+                >
+                  dialpad
+                </span>
+              </button>
+            </div>
+          </div>
+          <div class="searchCont" id="searchCont">
+            <button class="clS" onclick="hideSearchCont()">
+              <span class="material-symbols-outlined" style="color: #939393">
+                arrow_back
+              </span>
+            </button>
+            <div id="srCont" style="margin-top: 100px"></div>
+          </div>
+        </div>
+        <div id="contact" class="contact wrapPages">
+          <div class="searchBar" id="contactSrchBar">
+            <span class="material-symbols-outlined" style="color: #434343">
+              search
+            </span>
+            <input
+              type="text"
+              name=""
+              id="contactSearch"
+              class="searchInput"
+              placeholder="21 contacts"
+              oninput="typingSrch(event)"
+            />
+          </div>
+          <div class="contactSlot">
+            <div id="contactSlot"></div>
+            <ul class="scroller">
+              <li class="t" onclick="takeTo('a')">A</li>
+              <li class="t" onclick="takeTo('b')">B</li>
+              <li class="t" onclick="takeTo('c')">C</li>
+              <li class="t" onclick="takeTo('d')">D</li>
+              <li class="t" onclick="takeTo('e')">E</li>
+              <li class="t" onclick="takeTo('f')">F</li>
+              <li class="t" onclick="takeTo('g')">G</li>
+              <li class="t" onclick="takeTo('h')">H</li>
+              <li class="t" onclick="takeTo('i')">I</li>
+              <li class="t" onclick="takeTo('j')">J</li>
+              <li class="t" onclick="takeTo('k')">K</li>
+              <li class="t" onclick="takeTo('l')">L</li>
+              <li class="t" onclick="takeTo('m')">M</li>
+              <li class="t" onclick="takeTo('n')">N</li>
+              <li class="t" onclick="takeTo('o')">O</li>
+              <li class="t" onclick="takeTo('p')">P</li>
+              <li class="t" onclick="takeTo('q')">Q</li>
+              <li class="t" onclick="takeTo('r')">R</li>
+              <li class="t" onclick="takeTo('s')">S</li>
+              <li class="t" onclick="takeTo('t')">T</li>
+              <li class="t" onclick="takeTo('u')">U</li>
+              <li class="t" onclick="takeTo('v')">V</li>
+              <li class="t" onclick="takeTo('w')">W</li>
+              <li class="t" onclick="takeTo('x')">X</li>
+              <li class="t" onclick="takeTo('y')">Y</li>
+              <li class="t" onclick="takeTo('z')">Z</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <audio src="" id="audio" style="display: none"></audio>
+
+    <div
+      class="modal fade"
+      id="contactInfo"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+      style="z-index: 1000000000000000000000000000000000000000000000000000"
+    >
+      <div
+        class="modal-dialog modal-fullscreen bg-dark"
+        style="background-color: black !important"
+      >
+        <div
+          class="modal-content bg-black nj"
+          style="
+            /* background-image: linear-gradient(180deg,#00ffc496,black 30%,black 50%); */
+            background-color: black !important;
+          "
+        >
+          <div class="modal-body p-0" style="scroll-behavior: smooth">
+            <div class="topBar">
+              <button data-bs-dismiss="modal">
+                <span class="material-symbols-outlined"> arrow_back </span>
+              </button>
+            </div>
+            <div class="infoCard">
+              <img src="./assets/imgs/avtar.png" id="proPic" alt="" />
+              <p
+                style="font-size: 25px; margin-top: 20px; margin-bottom: 0px"
+                id="proName"
+              >
+                Username
+              </p>
+              <div id="numCont" style="display: grid; row-gap: 10px"></div>
+            </div>
+            <div id="log" style="display: none">
+              <div class="divider">
+                <p>Call history</p>
+                <hr />
+              </div>
+            </div>
+            <button class="logOpt" id="sm">Show more</button>
+
+            <div class="divider">
+              <p>More actions</p>
+              <hr />
+            </div>
+            <div class="butCont">
+              <button id="saver">
+                <span class="material-symbols-outlined"> person_add </span>
+                Save contact
+              </button>
+              <button id="cL">
+                <span class="material-symbols-outlined"> delete_history </span>
+                Clear history
+              </button>
+              <button id="sharer">
+                <span class="material-symbols-outlined"> ios_share </span>
+                Share contact
+              </button>
+              <button style="color: red" id="blocker">
+                <span class="material-symbols-outlined"> block </span>
+                Block
+              </button>
+              <button id="unblocker">
+                <span class="material-symbols-outlined"> block </span>
+                Unblock
+              </button>
+              <button style="color: red" id="deleter">
+                <span class="material-symbols-outlined"> delete </span>
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="video_call"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+      style="z-index: 1000000000000000000000000000000000000000000000000000"
+    >
+      <div
+        class="modal-dialog modal-fullscreen bg-dark"
+        style="background-color: black !important"
+      >
+        <div
+          class="modal-content bg-black nj"
+          style="
+            /* background-image: linear-gradient(180deg,#00ffc496,black 30%,black 50%); */
+            background-color: black !important;
+          "
+        >
+          <div class="modal-body p-0 vc" style="scroll-behavior: smooth">
+            <!-- iframe -->
+            <div id="iframeCont" style="display: none">
+              <div id="hideTitle"></div>
+              <div id="hideLogo"></div>
+              <iframe
+                id="myFrame"
+                width="695"
+                height="391"
+                src=""
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+                autoplay
+              ></iframe>
+            </div>
+            <!-- iframe -->
+
+            <!-- Sticker containers -->
+            <div id="stkCont">
+              <div style="border-bottom: 2px solid #ffffff26">
+                <div
+                  style="
+                    height: 60px;
+                    /* border-bottom: 2px solid #ffffff1f; */
+                    /* text-align: center; */
+                    display: grid;
+                    grid-template-columns: max-content auto;
+                    justify-items: center;
+                    align-items: center;
+                    width: 95%;
+                    margin: auto;
+                  "
+                >
+                  <button
+                    style="
+                      background-color: #ffffff36;
+                      border: 0px;
+                      float: left;
+                      border-radius: 100%;
+                      aspect-ratio: 1/1;
+                      display: inline-grid;
+                      align-content: center;
+                      justify-content: center;
+                    "
+                    onclick="closeStk()"
+                  >
+                    <i
+                      class="material-symbols-rounded jk"
+                      style="color: #ffffff"
+                      >arrow_back</i
+                    >
+                  </button>
+                  <p
+                    id="stkTag"
+                    style="
+                      display: inline-block;
+                      margin-bottom: 0px;
+                      color: white;
+                      background-color: #ffffff42;
+                      padding: 4px 12px;
+                      border-radius: 40px;
+                    "
+                  >
+                    emoji
+                  </p>
+                </div>
+              </div>
+
+              <div id="contStk"></div>
+              <div class="stkShowCase" id="stkShowCase">
+                <div
+                  style="
+                    display: block;
+                    /* width: 45px !important; */
+                    position: absolute;
+                    background-color: #ffffff;
+                    height: 65px;
+                    aspect-ratio: 1/1;
+                    /* width: 30px; */
+                    padding: 0px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    border-radius: 100%;
+                    border: 4px solid white;
+                    margin-top: 12px;
+                    z-index: -1;
+                  "
+                ></div>
+                <div>
+                  <img
+                    src="https://tgs.sgp1.digitaloceanspaces.com/AnimatedEmojies/yellow_heart_6be0e1fc.gif"
+                    alt=""
+                    onclick="getStk('emoji')"
+                    id="emoji"
+                    class="rClass"
+                    data-color="#00a1ff"
+                  />
+
+                  <img
+                    src="https://tgs.sgp1.digitaloceanspaces.com/HotCherry/58922.gif"
+                    alt=""
+                    onclick="getStk('cherry')"
+                    id="cherry"
+                    class="rClass"
+                    data-color="#ff006a"
+                  />
+
+                  <img
+                    src="https://tgs.sgp1.digitaloceanspaces.com/UtyaDuck/96f62b8d.gif"
+                    alt=""
+                    onclick="getStk('duck')"
+                    id="duck"
+                    class="rClass"
+                    data-color="#ec952a"
+                  />
+
+                  <img
+                    src="https://tgs.sgp1.digitaloceanspaces.com/FunkyGoose/ok_hand_db69fe7e.gif"
+                    alt=""
+                    onclick="getStk('ducky')"
+                    id="ducky"
+                    class="rClass"
+                    data-color="#fb6666"
+                  />
+
+                  <img
+                    src="https://tgs.sgp1.digitaloceanspaces.com/gldfsh/7459e16b.gif"
+                    alt=""
+                    onclick="getStk('fish')"
+                    id="fish"
+                    class="rClass"
+                    data-color="#3759ff"
+                  />
+
+                  <img
+                    src="https://tgs.sgp1.digitaloceanspaces.com/Flame/_1_da2b70ad.gif"
+                    alt=""
+                    onclick="getStk('flame')"
+                    id="flame"
+                    class="rClass"
+                    data-color="#e3c7ae"
+                  />
+
+                  <img
+                    src="https://tgs.sgp1.digitaloceanspaces.com/HarryGorilla/man_dancing_bff3ab36.gif"
+                    alt=""
+                    onclick="getStk('gorilla')"
+                    id="gorilla"
+                    class="rClass"
+                    data-color="#1f44c3"
+                  />
+
+                  <img
+                    src="https://tgs.sgp1.digitaloceanspaces.com/GumLoveIs/bathtub_93f6cbfb.gif"
+                    alt=""
+                    onclick="getStk('lover')"
+                    id="lover"
+                    class="rClass"
+                    data-color="#e8709f"
+                  />
+
+                  <img
+                    src="https://tgs.sgp1.digitaloceanspaces.com/ShinobiAssassin/_1_7d26db69.gif"
+                    alt=""
+                    onclick="getStk('ninja')"
+                    id="ninja"
+                    class="rClass"
+                    data-color="#505050"
+                  />
+
+                  <img
+                    src="https://tgs.sgp1.digitaloceanspaces.com/StarPatrick/cold_sweat_6588d9aa.gif"
+                    alt=""
+                    onclick="getStk('patrick')"
+                    id="patrick"
+                    class="rClass"
+                    data-color="#ff9ca1"
+                  />
+
+                  <img
+                    src="https://tgs.sgp1.digitaloceanspaces.com/LovelyPeachy/flushed_27251a7d.gif"
+                    alt=""
+                    onclick="getStk('peach')"
+                    id="peach"
+                    class="rClass"
+                    data-color="#fdd585"
+                  />
+                </div>
+              </div>
+            </div>
+            <!-- Sticker containers -->
+
+            <div id="muteIndic">
+              <button style="background-color: whitesmoke">
+                <i class="material-symbols-rounded jk" style="color: black">
+                  mic_off
+                </i>
+              </button>
+              <p>Muted</p>
+            </div>
+            <!-- draggable video -->
+
+            <div id="dr" class="dr" onclick="toggleNav()">
+              <video src="" id="dragVid" class="draggable" autoplay></video>
+              <div class="draggable" id="dragMuted">
+                <img src="" alt="" id="dragMuted_img1" />
+                <img src="" alt="" id="dragMuted_img2" />
+              </div>
+            </div>
+
+            <div
+              id="navTop"
+              style="
+                position: fixed;
+                left: 0;
+                top: 20px;
+                right: 0;
+                background-color: #0000005e;
+                z-index: 1000000000;
+                width: 90%;
+                margin: auto;
+                padding: 15px 10px;
+                height: 80px;
+                border-radius: 40px;
+                transition-duration: 0.5s;
+                backdrop-filter: blur(5px);
+                text-align: center;
+                column-gap: 8px;
+                display: grid;
+                grid-template-columns: max-content auto 45px 45px;
+                align-content: center;
+                align-items: center;
+              "
+              class=""
+            >
+              <img
+                src=""
+                alt=""
+                style="
+                  display: inline-grid;
+                  background-color: #383838;
+                  border: 0px;
+                  border-radius: 100%;
+                  aspect-ratio: 1/1;
+                  width: 50px;
+                  color: white;
+                  object-fit: cover;
+                "
+                id="reciPic"
+              />
+              <div
+                style="
+                  display: inline-grid;
+                  margin-bottom: 0px;
+                  color: white;
+                  font-weight: 700;
+                  font-size: 16px;
+                  background-color: #ffffff00;
+                  height: 100%;
+                  text-align: left;
+                "
+              >
+                <p
+                  style="
+                    margin: 0px;
+                    width: 100%;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                  "
+                  id="reciUsername"
+                >
+                  Username
+                </p>
+                <p
+                  style="
+                    margin: 0px;
+                    font-weight: 500;
+                    font-size: 15px;
+                    color: #ffffffad;
+                  "
+                  id="counter"
+                >
+                  21:02
+                </p>
+              </div>
+              <div>
+                <button id="trans" onclick="showLanguage()" class="yyl navB">
+                  <i class="material-symbols-rounded jk">translate</i>
+                </button>
+              </div>
+
+              <button
+                onclick="endCall()"
+                style="
+                  display: inline-grid;
+                  background-color: #ff0000;
+                  border: 0px;
+                  border-radius: 100%;
+                  aspect-ratio: 1/1;
+                  width: 45px;
+                  display: inline-grid;
+                  align-items: center;
+                  justify-items: center;
+                  align-content: center;
+                  justify-content: center;
+                  float: right;
+                  margin-right: 4px;
+                  color: white;
+                "
+              >
+                <i class="material-symbols-rounded jk">call_end</i>
+              </button>
+            </div>
+
+            <div id="vc_cont" class="vc_cont">
+              <div id="localVideoMuted">
+                <img src="" alt="" id="localMuted_img1" />
+                <img src="" alt="" id="localMuted_img2" />
+              </div>
+              <video
+                src=""
+                id="localVideo"
+                class="small_vid"
+                autoplay
+                style="height: 100dvh; width: 100dvw"
+              ></video>
+              <i
+                class="material-symbols-rounded jk micShown"
+                id="localMS"
+                style="display: none"
+              >
+                mic_off
+              </i>
+              <div
+                class="small_vid"
+                style="display: none; background-color: grey"
+                id="localIntro"
+                onclick="toggleNav()"
+              >
+                <div
+                  style="
+                    display: inline-grid;
+                    align-content: center;
+                    height: 100%;
+                  "
+                >
+                  <img
+                    src=""
+                    alt=""
+                    style="
+                      height: 100px;
+                      aspect-ratio: 1/1;
+                      border-radius: 100%;
+                      object-fit: cover;
+                    "
+                    id="localIm"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div id="vidOpt" class="vidOpt">
+              <button
+                onclick="switchCamera()"
+                class="navB"
+                id="switchCamera"
+                data-cam="front"
+                style="display: inline-grid"
+              >
+                <i class="material-symbols-rounded jk"> flip_camera_android </i>
+              </button>
+
+              <button
+                onclick="muteAudio()"
+                class="navB"
+                id="muteMic"
+                style="display: inline-grid"
+              >
+                <i class="material-symbols-rounded jk"> mic </i>
+              </button>
+              <button
+                onclick="unMuteAudio()"
+                class="navB"
+                id="Mic"
+                style="display: none; background-color: whitesmoke"
+              >
+                <i class="material-symbols-rounded jk" style="color: black">
+                  mic_off
+                </i>
+              </button>
+              <button
+                onclick="muteVideo()"
+                class="navB"
+                id="videoHide"
+                style="display: inline-grid"
+              >
+                <i class="material-symbols-rounded jk"> videocam </i>
+              </button>
+              <button
+                onclick="unMuteVideo()"
+                class="navB"
+                id="videoShow"
+                style="display: none; background-color: whitesmoke"
+              >
+                <i class="material-symbols-rounded jk" style="color: black">
+                  videocam_off
+                </i>
+              </button>
+              <button onclick="openStk()" class="navB" id="celeb">
+                <i class="material-symbols-rounded jk"> mood </i>
+              </button>
+              <button
+                onclick="closeStk()"
+                class="navB"
+                id="celeb_close"
+                style="display: none; background-color: whitesmoke"
+              >
+                <i
+                  class="material-symbols-rounded jk"
+                  style="color: black; transform: rotate(90deg)"
+                >
+                  arrow_forward_ios
+                </i>
+              </button>
+
+              <!-- <button onclick="displayBlock(['ytS'])" disabled>
+                <i class="material-symbols-rounded jk"> present_to_all </i>
+              </button> -->
+            </div>
+
+            <!-- Language -->
+            <div class="lang" id="lang">
+              <div class="langWrap">
+                <img
+                  src="./assets/imgs/bg.png"
+                  alt=""
+                  style="
+                    width: 100%;
+                    height: 250px;
+                    object-fit: cover;
+                    /* filter: blur(5px); */
+                    /* aspect-ratio: 1/1; */
+                  "
+                />
+                <button class="clLang" onclick="hideLanguage()">
+                  <span
+                    class="material-symbols-outlined"
+                    style="color: white; font-weight: 500; font-size: 30px"
+                  >
+                    arrow_back
+                  </span>
+                </button>
+                <p
+                  style="
+                    margin-bottom: 0px;
+                    color: white;
+                    font-size: 30px;
+                    position: absolute;
+                    top: 200px;
+                    margin-left: 10px;
+                  "
+                  id="rt"
+                ></p>
+                <p class="zxl">
+                  Feeling lost in translation? Choose your language and let us
+                  do the magic!
+                </p>
+                <div style="text-align: center; margin-top: 10px">
+                  <div
+                    class="searchBar"
+                    style="
+                      width: 95%;
+                      border-radius: 8px;
+                      background-color: #262626;
+                      height: 50px;
+                      border: 2px solid #ffffff1c;
+                      margin-bottom: 30px;
+                    "
+                  >
+                    <span
+                      class="material-symbols-outlined"
+                      style="color: #727272"
+                    >
+                      search
+                    </span>
+                    <input
+                      type="text"
+                      name=""
+                      id="srchLang"
+                      class="searchInput"
+                      placeholder="Search languages..."
+                    />
+                  </div>
+                  <div class="yut">
+                    <div class="langCont" id="langCont"></div>
+                  </div>
+                </div>
+              </div>
+              <div
+                style="
+                  text-align: center;
+                  position: absolute;
+                  bottom: 0px;
+                  width: 100%;
+                "
+              >
+                <button class="langMain" onclick="askTranslate()">
+                  <svg
+                    fill="#ffffff"
+                    viewBox="0 0 256 256"
+                    id="Flat"
+                    xmlns="http://www.w3.org/2000/svg"
+                    stroke="#ffffff"
+                    style="height: 20px"
+                  >
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g
+                      id="SVGRepo_tracerCarrier"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></g>
+                    <g id="SVGRepo_iconCarrier">
+                      <path
+                        d="M208.8584,144a15.85626,15.85626,0,0,1-10.46778,15.01367l-52.16015,19.2168-19.2168,52.16015a16.00075,16.00075,0,0,1-30.02734,0l-19.2168-52.16015-52.16015-19.2168a16.00075,16.00075,0,0,1,0-30.02734l52.16015-19.2168,19.2168-52.16015a16.00075,16.00075,0,0,1,30.02734,0l19.2168,52.16015,52.16015,19.2168A15.85626,15.85626,0,0,1,208.8584,144ZM152,48h16V64a8,8,0,0,0,16,0V48h16a8,8,0,0,0,0-16H184V16a8,8,0,0,0-16,0V32H152a8,8,0,0,0,0,16Zm88,32h-8V72a8,8,0,0,0-16,0v8h-8a8,8,0,0,0,0,16h8v8a8,8,0,0,0,16,0V96h8a8,8,0,0,0,0-16Z"
+                      ></path>
+                    </g>
+                  </svg>
+                  start translation
+                </button>
+              </div>
+            </div>
+            <!-- Language -->
+
+            <!-- youtube controller -->
+            <div
+              id="ytOpt"
+              class="vidOpt"
+              style="
+                display: none;
+                grid-template-columns: repeat(4, 20%);
+                justify-content: space-between;
+              "
+            >
+              <button onclick="displayBlock(['ytS'])" class="navB">
+                <i class="material-symbols-rounded jk"> present_to_all </i>
+              </button>
+
+              <button
+                onclick="hideTube()"
+                class="navB"
+                id="hideTube"
+                style="display: inline-grid"
+              >
+                <i class="material-symbols-rounded jk"> music_note </i>
+              </button>
+
+              <button
+                onclick="showYT()"
+                class="navB"
+                id="showYT"
+                style="display: none; background-color: whitesmoke"
+              >
+                <i class="material-symbols-rounded jk" style="color: black">
+                  music_note
+                </i>
+              </button>
+
+              <button onclick="openStk()" class="navB" id="celebYT">
+                <i class="material-symbols-rounded jk"> mood </i>
+              </button>
+              <button
+                onclick="closeStk()"
+                class="navB"
+                id="celeb_closeYT"
+                style="display: none; background-color: whitesmoke"
+              >
+                <i
+                  class="material-symbols-rounded jk"
+                  style="color: black; transform: rotate(90deg)"
+                >
+                  arrow_forward_ios
+                </i>
+              </button>
+
+              <button
+                onclick="closeTube()"
+                class="navB"
+                id=""
+                style="background-color: whitesmoke"
+              >
+                <i class="material-symbols-rounded jk" style="color: black">
+                  close
+                </i>
+              </button>
+            </div>
+            <!-- youtube controller -->
+            <!-- Ringing Page -->
+            <div id="ringPage" class="ringPage">
+              <div class="ringNav">
+                <div>
+                  <p id="ringName">Username</p>
+                  <p
+                    style="margin-top: 0px; font-size: 18px; color: #ffffff99"
+                    id="phoneNumber"
+                  >
+                    Ringing...
+                  </p>
+                </div>
+
+                <button
+                  onclick="reject()"
+                  style="background-color: red; float: left"
+                >
+                  <i class="material-symbols-rounded jk">close</i>
+                </button>
+              </div>
+              <img src="" alt="" id="ringPic" />
+
+              <div id="button-background">
+                <span class="slide-text">slide to answer</span>
+                <div id="slider">
+                  <i
+                    id="locker"
+                    class="material-symbols-rounded fill"
+                    style="font-size: 35px"
+                    >call</i
+                  >
+                </div>
+              </div>
+
+              <!-- <div>
+                            <button onclick="reject()" style="background-color: red; float: left;"><i
+                                    class="material-symbols-rounded jk">call_end</i></button>
+
+                            <button onclick="accept()" style="background-color: lime; float: right;"><i
+                                    class="material-symbols-rounded jk">call</i></button>
+
+                        </div> -->
+            </div>
+            <!-- Ringing Page -->
+
+            <!-- YouTube Search containers -->
+            <div id="ytS" class="ytS">
+              <div class="ytSc">
+                <button class="ytClose" onclick="displayNone(['ytS'])">
+                  <i class="material-symbols-rounded jk" style="color: #ffffff">
+                    arrow_back
+                  </i>
+                </button>
+                <input
+                  type="search"
+                  id="ytInput"
+                  placeholder="Search YouTube or Paste Link."
+                />
+              </div>
+
+              <div id="ytCont"></div>
+            </div>
+            <!-- YouTube Search containers -->
+
+            <!-- Reaction Container -->
+            <div id="react">
+              <div class="reactionDiv"></div>
+              <img src="" id="reaction" alt="" />
+
+              <div class="reactInfo" id="reactInfo">
+                <img src="test.jpg" id="reactorImg" alt="" />
+                <div>
+                  <p class="reactorName" style="font-weight: bold">
+                    Reacted By
+                  </p>
+                  <p
+                    id="reactorName"
+                    class="reactorName"
+                    style="color: #000000cc"
+                  >
+                    Username
+                  </p>
+                </div>
+              </div>
+
+              <button onclick="closeNow()">Okay Close</button>
+            </div>
+
+            <!-- Reaction Container -->
+            <!-- AI initialization -->
+            <div class="aiReady" id="aiReady">
+              <lottie-player
+                src="https://lottie.host/071b202c-5784-4105-8969-3ee4fbff3c9f/meMYZo3BC5.json"
+                background="##fff"
+                speed="1"
+                style="width: 300px; height: 300px"
+                loop
+                autoplay
+                direction="1"
+                mode="normal"
+              ></lottie-player>
+              <p
+                style="font-weight: 500; font-size: 23px; color: black"
+                id="msgHld"
+              ></p>
+              <p style="position: absolute; bottom: 10px; color: black">
+                Please wait..
+              </p>
+            </div>
+            <!-- AI initialization -->
+            <!-- End AI session -->
+            <div class="aiEnd" id="aiEnd">
+              <div>
+                <p style="margin-bottom: 18px">
+                  Do you want to End AI translation?
+                </p>
+                <button onclick="endTranslator()">Yes</button>
+                <button onclick="hideEndWarn()">No</button>
+              </div>
+            </div>
+            <!-- End AI session -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="nativeLang" id="nativeLang">
+      <p
+        style="
+          color: white;
+          width: 95%;
+          margin: auto;
+          font-size: 18px;
+          margin-top: 20px;
+          text-align: center;
+          font-family: 'Signika Negative';
+          letter-spacing: 1px;
+        "
+      >
+        Setup Translation AI
+      </p>
+      <p class="nativeLangTag">Select your gender</p>
+      <div class="gender">
+        <button id="Male" class="g" onclick="setGender('Male')">
+          <span class="material-symbols-outlined"> face </span>Male
+        </button>
+        <button id="Female" class="g" onclick="setGender('Female')">
+          <span
+            class="material-symbols-outlined"
+            style="transform: translateY(-3px)"
+          >
+            face_4 </span
+          >Female
+        </button>
+        <button id="Others" class="g" onclick="setGender('Others')">
+          <span class="material-symbols-outlined">account_circle</span>Others
+        </button>
+      </div>
+      <p class="nativeLangTag">Select a language you speak</p>
+      <div
+        class="searchBar"
+        style="
+          width: 95%;
+          border-radius: 8px;
+          background-color: #262626;
+          height: 50px;
+          border: 2px solid #ffffff1c;
+          margin-bottom: 15px;
+        "
+      >
+        <span class="material-symbols-outlined" style="color: #727272">
+          search
+        </span>
+        <input
+          type="text"
+          name=""
+          class="searchInput"
+          placeholder="Search languages..."
+          id="disLang"
+          oninput="displayLang(event)"
+        />
+      </div>
+      <div class="yut">
+        <div class="langCont" id="natLangCont"></div>
+      </div>
+      <button class="sBut" onclick="saveSettings()">Save Settings</button>
+    </div>
+
+    <!-- Pop up starts here -->
+    <div class="delCon" id="delCon" onclick="hideDel()">
+      <div>
+        <p id="xp"></p>
+        <span>
+          <button onclick="hideDel()">Cancel</button>
+          <button style="background-color: red" id="delBut">Delete</button>
+        </span>
+      </div>
+    </div>
+    <!-- Pop up ends here -->
+
+    <!-- Settings starts here -->
+    <div class="setCont" id="setCont">
+      <button class="clLang" onclick="displayNone(['setCont'])">
+        <span
+          class="material-symbols-outlined"
+          style="color: white; font-weight: 300; font-size: 30px"
+        >
+          arrow_back
+        </span>
+      </button>
+      <p class="headLine">Call Settings</p>
+      <button class="setBut" onclick="displayBlock(['nativeLang'])">
+        <div>
+          Setup AI Translation
+          <br />
+          <span>Set your language and gender.</span>
+        </div>
+
+        <span
+          class="material-symbols-outlined"
+          style="color: grey; font-weight: 300; font-size: 20px"
+        >
+          arrow_forward_ios
+        </span>
+      </button>
+      <button class="setBut" onclick="showBlockList()">
+        <div>
+          Blocklist
+          <br />
+          <span>View and manage blocked contacts.</span>
+        </div>
+        <span
+          class="material-symbols-outlined"
+          style="color: grey; font-weight: 300; font-size: 20px"
+        >
+          arrow_forward_ios
+        </span>
+      </button>
+      <button class="setBut" onclick="setSound()">
+        <div>
+          Ringtone and Dialtone
+          <br />
+          <span>Click to turn ringtone and dialtone ON/OFF.</span>
+        </div>
+
+        <span
+          style="color: grey; font-weight: 300; font-size: 17px"
+          id="sSound"
+        >
+          ON
+        </span>
+      </button>
+      <hr
+        style="
+          background-color: grey;
+          width: 90%;
+          margin: auto;
+          margin-top: 20px;
+        "
+      />
+      <a class="setBut" href="https://datanation.co.in/about" target="_blank">
+        About us
+        <span
+          class="material-symbols-outlined"
+          style="color: grey; font-weight: 300; font-size: 20px"
+        >
+          open_in_new
+        </span>
+      </a>
+      <a class="setBut" href="https://datanation.co.in/contact" target="_blank">
+        Contact us
+        <span
+          class="material-symbols-outlined"
+          style="color: grey; font-weight: 300; font-size: 20px"
+        >
+          open_in_new
+        </span>
+      </a>
+      <a class="setBut" href="https://datanation.co.in/policy" target="_blank">
+        Privacy Policy
+        <span
+          class="material-symbols-outlined"
+          style="color: grey; font-weight: 300; font-size: 20px"
+        >
+          open_in_new
+        </span>
+      </a>
+      <hr
+        style="
+          background-color: grey;
+          width: 90%;
+          margin: auto;
+          margin-top: 20px;
+        "
+      />
+      <button class="setBut" style="color: red" onclick="showDel('','c')">
+        Clear Call Logs
+        <span
+          class="material-symbols-outlined"
+          style="color: grey; font-weight: 300; font-size: 20px"
+        >
+          delete_history
+        </span>
+      </button>
+      <button class="setBut" style="color: red" onclick="logout()">
+        Logout
+        <span
+          class="material-symbols-outlined"
+          style="color: grey; font-weight: 300; font-size: 20px"
+        >
+          logout
+        </span>
+      </button>
+      <button class="setBut" style="color: red" onclick="showDel('','da')">
+        Delete Account
+        <span
+          class="material-symbols-outlined"
+          style="color: grey; font-weight: 300; font-size: 20px"
+        >
+          delete_forever
+        </span>
+      </button>
+    </div>
+    <!-- Settings ends here -->
+
+    <!-- Blocked starts here -->
+    <div class="setCont" id="bCont">
+      <button class="clLang" onclick="displayNone(['bCont'])">
+        <span
+          class="material-symbols-outlined"
+          style="color: white; font-weight: 300; font-size: 30px"
+        >
+          arrow_back
+        </span>
+      </button>
+      <p class="headLine">Blocked Contacts</p>
+      <p id="emptyBlock" class="emptyBlock">No blocked contacts</p>
+    </div>
+    <!-- Blocked ends here -->
+
+    <script type="module" src="./js/utils.js"></script>
+
+    <script>
+      /* 
+        0:free (status:true)
+        1:calling (status:false)
+        2:ringing (status:false)
+        3:accepted (status:false)
+        4:reject (status:true)
+        5:end (status:true)
+        6:busy (status:true)
+
+        mv:muted video
+        uv:unmuted video
+        ma:muted audio
+        ua:unmuted audio
+        sc:switched camera
+        
+        */
+
+      /* 
+       status
+       0: missed
+       1: connect
+       2: could'nt connect
+       */
+
+      /*variables*/
+      let localStream,
+        reciUser,
+        callId,
+        peerId,
+        audioTrack,
+        videoTrack,
+        sTime,
+        callState,
+        reciClientId,
+        bgColor,
+        player,
+        playerState,
+        isPlayer,
+        t,
+        name,
+        autoCut,
+        pic,
+        to_name,
+        to_pic,
+        speaker,
+        translator,
+        channelName;
+      let gender;
+      let myLang;
+      let userContact;
+      let status = true;
+      let toggleN = false;
+      let hiddenYT = false;
+      let abort = true;
+      let closedYT = true;
+      let stopCounter = false;
+      let clientId = parseInt(Math.random() * 1000000000).toString();
+      const apiKey = "AIzaSyAMqH8Wa1qg4AfEvHHHYXbZspjm1BjluTE";
+      const avtar = "https://comradeeco.pythonanywhere.com/static/avtar.png";
+      let reciGen = "";
+      let reciArray;
+      let duration = 0;
+      let time_stamp,
+        _mode,
+        _duration,
+        incoming = true,
+        _status = "0";
+
+      const SESSION =
+        localStorage.getItem("SESSION") != null
+          ? localStorage.getItem("SESSION")
+          : logout();
+      const SIM =
+        localStorage.getItem("sim") != null
+          ? localStorage.getItem("sim")
+          : logout();
+
+      const username = SIM;
+      const subscriptionKey = "9deef01144614bdb913f29e2f45f8b95";
+      const serviceRegion = "westus";
+      let voice = "en-US-AvaMultilingualNeural";
+
+      const speechConfig = SpeechSDK.SpeechTranslationConfig.fromSubscription(
+        subscriptionKey,
+        serviceRegion
+      );
+      function displayBlock(array) {
+        array.forEach((id) => {
+          document.getElementById(id).style.display = "block";
+        });
+      }
+      function displayGrid(array) {
+        array.forEach((id) => {
+          document.getElementById(id).style.display = "grid";
+        });
+      }
+      function displayInlineGrid(array) {
+        array.forEach((id) => {
+          document.getElementById(id).style.display = "inline-grid";
+        });
+      }
+      function displayNone(array) {
+        array.forEach((id) => {
+          document.getElementById(id).style.display = "none";
+        });
+      }
+
+      function createDiv({
+        style = "",
+        click = "",
+        text = "",
+        id = "",
+        classList = [""],
+      } = {}) {
+        var divElement = document.createElement("div");
+        divElement.setAttribute("style", style);
+        divElement.id = id;
+        divElement.classList = classList.join(" ");
+        divElement.innerText = text;
+        divElement.setAttribute("onclick", click);
+        return divElement;
+      }
+      function createPara({
+        style = "",
+        click = "",
+        text = "",
+        id = "",
+        classList = [""],
+      } = {}) {
+        var paraElement = document.createElement("p");
+        paraElement.setAttribute("style", style);
+        paraElement.id = id;
+        paraElement.classList = classList.join(" ");
+        paraElement.innerText = text;
+        paraElement.setAttribute("onclick", click);
+        return paraElement;
+      }
+      function createBut({
+        style = "",
+        click = "",
+        text = "",
+        id = "",
+        classList = [""],
+      } = {}) {
+        var butElement = document.createElement("button");
+        butElement.setAttribute("style", style);
+        butElement.id = id;
+        butElement.classList = classList.join(" ");
+        butElement.innerText = text;
+        butElement.setAttribute("onclick", click);
+        return butElement;
+      }
+      function createImg({
+        style = "",
+        click = "",
+        text = "",
+        id = "",
+        classList = [""],
+        src = "",
+      } = {}) {
+        var imgElement = document.createElement("img");
+        imgElement.setAttribute("style", style);
+        imgElement.id = id;
+        imgElement.classList = classList.join(" ");
+        imgElement.src = src;
+        imgElement.setAttribute("onclick", click);
+        return imgElement;
+      }
+
+      function createSpan({
+        style = "",
+        click = "",
+        text = "",
+        id = "",
+        classList = [""],
+      } = {}) {
+        var spanElement = document.createElement("span");
+        spanElement.setAttribute("style", style);
+        spanElement.id = id;
+        spanElement.classList = classList.join(" ");
+        spanElement.innerText = text;
+        spanElement.setAttribute("onclick", click);
+        return spanElement;
+      }
+
+      function appendChild(id, childNode) {
+        document.getElementById(id).appendChild(childNode);
+      }
+      async function logout() {
+        await localStorage.clear();
+        window.location.href = "index.html";
+      }
+      async function getUserData() {
+        const data = {
+          SESSION: SESSION,
+          num: SIM,
+        };
+        const url = "https://comradeeco.pythonanywhere.com/comeet/getUserData";
+        const response = await fetchApi(url, data);
+        if (response.status) {
+          name = response.name;
+          gender = response.gender;
+          myLang = response.language;
+          pic = response.pic == "_default_" ? avtar : response.pic;
+          localStorage.setItem("blocked", JSON.stringify(response.blocked));
+          if (!(gender && myLang)) {
+            displayBlock(["nativeLang"]);
+          }
+        } else {
+          logout();
+        }
+      }
+
+      var navB = document.getElementsByClassName("navB");
+      for (var i = 0; i < navB.length; i++) {
+        navB[i].disabled = true;
+      }
+
+      const peer = new Peer(undefined, {
+        host: "comrade-peer-server.glitch.me",
+        port: 443,
+        path: "/peerjs",
+        secure: true,
+        config: {
+          iceServers: [
+            {
+              urls: ["stun:bn-turn1.xirsys.com"],
+            },
+            {
+              username:
+                "Xma8t2xb6tMhSbS9NqH1ynxC7OsJQ64qV3hRHW_URQu7wCKQRw4j7HDsEN7v23rgAAAAAGI5ZJdNYWhlc2g=",
+              credential: "8b51ac12-a9a4-11ec-80a2-0242ac140004",
+              urls: [
+                "turn:bn-turn1.xirsys.com:80?transport=udp",
+                "turn:bn-turn1.xirsys.com:3478?transport=udp",
+                "turn:bn-turn1.xirsys.com:80?transport=tcp",
+                "turn:bn-turn1.xirsys.com:3478?transport=tcp",
+                "turns:bn-turn1.xirsys.com:443?transport=tcp",
+                "turns:bn-turn1.xirsys.com:5349?transport=tcp",
+              ],
+            },
+          ],
+        },
+      });
+      peer.on("open", function (id) {
+        peerId = id;
+      });
+
+      function setPlayoutDelayHint(delayHint) {
+        reciArray.forEach((receiver) => {
+          if ("playoutDelayHint" in receiver) {
+            console.log("Adding 5s delay to call!!");
+            receiver.playoutDelayHint = delayHint;
+          } else {
+            console.warn("playoutDelayHint is not supported in this browser.");
+          }
+        });
+      }
+
+      const ably = new Ably.Realtime({
+        key: "jJ7-rw.z146Tg:FxZ-vM0wnWUdPeOD0yba30gWScW3QAMfABwQvg9mang",
+        clientId: clientId,
+      });
+      ably.connection.once("connected");
+      const channel = ably.channels.get("test");
+      channel.presence.subscribe("leave", (member) => {
+        if (member.clientId == reciClientId) {
+          endCall();
+        }
+      });
+      channel.presence.enter();
+
+      const saveUser = (username) => {
+        console.log("saving user for: " + username);
+        channel.subscribe(username, (message) => {
+          console.log("saved user for: " + username);
+
+          const data = message.data;
+
+          document.getElementById("dragMuted_img1").src = pic;
+          document.getElementById("dragMuted_img2").src = pic;
+          //reciever side
+          if (data.callStatus == "1" && status == false) {
+            console.log(data);
+            let r = {
+              callStatus: "6",
+              username: SIM,
+              callId: data.callId,
+            };
+            channel.publish("c_" + data.callId, r);
+          }
+
+          //caller side
+          if (
+            data.callStatus == "2" &&
+            data.username == reciUser &&
+            data.callId == callId
+          ) {
+            document.getElementById("counter").innerText = "Ringing...";
+          }
+          if (
+            data.callStatus == "mv" &&
+            data.username == reciUser &&
+            data.callId == callId
+          ) {
+            displayNone(["localVideo"]);
+            displayBlock(["localVideoMuted"]);
+          }
+          if (
+            data.callStatus == "uv" &&
+            data.username == reciUser &&
+            data.callId == callId
+          ) {
+            displayBlock(["localVideo"]);
+            displayNone(["localVideoMuted"]);
+          }
+          if (
+            data.callStatus == "ma" &&
+            data.username == reciUser &&
+            data.callId == callId
+          ) {
+            displayGrid(["muteIndic"]);
+          }
+          if (
+            data.callStatus == "stk" &&
+            data.username == reciUser &&
+            data.callId == callId
+          ) {
+            let { src, name, pic, bgColor } = data;
+            showReact(src, name, pic, bgColor);
+          }
+          if (
+            data.callStatus == "YT" &&
+            data.username == reciUser &&
+            data.callId == callId
+          ) {
+            let { YT_ID } = data;
+            isPlayer = false;
+            playTube(YT_ID, isPlayer);
+          }
+          if (
+            data.callStatus == "seekPlay" &&
+            data.username == reciUser &&
+            data.callId == callId
+          ) {
+            let { time } = data;
+            seekPlay(time);
+          }
+          if (
+            data.callStatus == "seekPause" &&
+            data.username == reciUser &&
+            data.callId == callId
+          ) {
+            let { time } = data;
+            seekPause(time);
+          }
+          if (
+            data.callStatus == "cYT" &&
+            data.username == reciUser &&
+            data.callId == callId
+          ) {
+            closeTube();
+          }
+          if (
+            data.callStatus == "hYT" &&
+            data.username == reciUser &&
+            data.callId == callId
+          ) {
+            hideTube();
+          }
+          if (
+            data.callStatus == "sYT" &&
+            data.username == reciUser &&
+            data.callId == callId
+          ) {
+            showYT();
+          }
+          if (
+            data.callStatus == "ua" &&
+            data.username == reciUser &&
+            data.callId == callId
+          ) {
+            displayNone(["muteIndic"]);
+          }
+          if (
+            data.callStatus == "3" &&
+            data.username == reciUser &&
+            data.callId == callId
+          ) {
+            abort = false;
+            _status = "1";
+            var navB = document.getElementsByClassName("navB");
+            for (var i = 0; i < navB.length; i++) {
+              navB[i].disabled = false;
+            }
+            document.getElementById("dialPlayer").pause();
+            displayBlock(["dragVid"]);
+            displayNone(["dragMuted"]);
+
+            reciClientId = data.clientId;
+            clearTimeout(autoCut);
+
+            const call = peer.call(data.peerId, localStream);
+
+            const ricVideo = document.getElementById("localVideo");
+            const dragVid = document.getElementById("dragVid");
+
+            call.on("stream", (reciStream) => {
+              callState = call;
+
+              ricVideo.srcObject = reciStream;
+              ricVideo.muted = false;
+              ricVideo.play();
+              dragVid.srcObject = localStream;
+              dragVid.muted = true;
+              dragVid.play();
+
+              showCallModal();
+              //start call time
+              sTime = new Date();
+              duraTime();
+              reciArray = call.peerConnection.getReceivers();
+            });
+          }
+          if (
+            data.callStatus == "4" &&
+            data.username == reciUser &&
+            data.callId == callId
+          ) {
+            abort = false;
+            saveCallLogs(
+              reciUser,
+              time_stamp,
+              incoming,
+              _mode,
+              "2",
+              duration,
+              callId
+            );
+            declinedCall(callId);
+          }
+          if (
+            data.callStatus == "6" &&
+            data.username == reciUser &&
+            data.callId == callId
+          ) {
+            abort = false;
+            console.log(data);
+            stopCounter = true;
+            document.getElementById("counter").innerText = "Line Busy...";
+            setTimeout(() => {
+              endCall();
+            }, 10000);
+          }
+          if (
+            data.callStatus == "T" &&
+            data.username == reciUser &&
+            data.callId == callId
+          ) {
+            if (data.status) {
+              showInitialPage("Initializing AI Translation");
+              startTranslation(myLang, data.lang);
+            } else {
+              showInitialPage("Ending AI Translation");
+              translator.stopContinuousRecognitionAsync();
+            }
+          }
+
+          if (
+            data.callStatus == "TR" &&
+            data.username == reciUser &&
+            data.callId == callId
+          ) {
+            console.log(data.text);
+            speak(data.text);
+          }
+          if (
+            data.callStatus == "5" &&
+            data.username == reciUser &&
+            data.callId == callId
+          ) {
+            endCall();
+          }
+        });
+      };
+      const declinedCall = (id) => {
+        console.log(callId);
+        console.log(id);
+        console.log(callId.toString() != id.toString());
+        saveCallLogs(
+          reciUser,
+          time_stamp,
+          incoming,
+          _mode,
+          "2",
+          duration,
+          callId
+        );
+        if (callId.toString() != id.toString()) return;
+        stopCounter = true;
+        document.getElementById("counter").innerText = "Call Declined";
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+      };
+
+      const attendCall = (data) => {
+        if (data.callStatus == "1" && status == true && data.type == "video") {
+          reciUser = data.callerId;
+          callId = data.callId;
+          time_stamp = data.timeStamp;
+          _mode = "video";
+
+          channelName = "c_" + callId;
+          saveUser("r_" + callId);
+          abort = false;
+          reciClientId = data.clientId;
+          reciGen = data.gender;
+          status = false;
+          to_name = data.to_name;
+          to_pic = data.to_pic;
+          navigator.mediaDevices
+            .getUserMedia({ video: true, audio: true })
+            .then((stream) => {
+              const myVid = document.getElementById("localVideo");
+              myVid.srcObject = stream;
+              myVid.muted = true;
+
+              localStream = stream;
+              audioTrack = localStream.getAudioTracks()[0];
+              videoTrack = localStream.getVideoTracks()[0];
+              document.getElementById("switchCamera").dataset.cam =
+                videoTrack.getCapabilities().deviceId;
+
+              peer.on("call", (call) => {
+                callState = call;
+
+                call.answer(localStream);
+                const ricVideo = document.getElementById("localVideo");
+                const dragVid = document.getElementById("dragVid");
+
+                call.on("stream", (reciStream) => {
+                  ricVideo.srcObject = reciStream;
+                  ricVideo.muted = false;
+
+                  dragVid.srcObject = localStream;
+                  dragVid.muted = true;
+                });
+
+                reciArray = call.peerConnection.getReceivers();
+              });
+              showRingpage(data.pic);
+              showCallModal();
+            });
+          let l = {
+            callStatus: "2",
+            username: SIM,
+            callId: callId,
+          };
+          channel.publish(channelName, l);
+        }
+
+        if (data.callStatus == "1" && status == true && data.type == "audio") {
+          reciUser = data.callerId;
+          callId = data.callId;
+
+          channelName = "c_" + callId;
+          saveUser("r_" + callId);
+
+          time_stamp = data.timeStamp;
+          _mode = "audio";
+          reciClientId = data.clientId;
+          reciGen = data.gender;
+          to_name = data.to_name;
+          to_pic = data.to_pic;
+          status = false;
+          navigator.mediaDevices
+            .getUserMedia({ video: true, audio: true })
+            .then((stream) => {
+              const myVid = document.getElementById("localVideo");
+              myVid.srcObject = stream;
+              myVid.muted = true;
+
+              localStream = stream;
+              audioTrack = localStream.getAudioTracks()[0];
+              videoTrack = localStream.getVideoTracks()[0];
+              document.getElementById("switchCamera").dataset.cam =
+                videoTrack.getCapabilities().deviceId;
+
+              displayNone(["videoHide", "dragVid", "localVideo"]);
+              displayBlock(["dragMuted", "localVideoMuted"]);
+
+              displayInlineGrid(["videoShow"]);
+              videoTrack.enabled = false;
+
+              peer.on("call", (call) => {
+                callState = call;
+                call.answer(localStream);
+                const ricVideo = document.getElementById("localVideo");
+                const dragVid = document.getElementById("dragVid");
+
+                call.on("stream", (reciStream) => {
+                  ricVideo.srcObject = reciStream;
+                  ricVideo.muted = false;
+
+                  dragVid.srcObject = localStream;
+                  dragVid.muted = true;
+                });
+              });
+              showRingpage(data.pic);
+              showCallModal();
+              muteVideo();
+            });
+          let l = {
+            callStatus: "2",
+            username: SIM,
+            callId: callId,
+          };
+          channel.publish(channelName, l);
+        }
+      };
+
+      const accept = () => {
+        abort = false;
+        status = false;
+        _status = "1";
+        name = to_name;
+        pic = to_pic;
+        var navB = document.getElementsByClassName("navB");
+        for (var i = 0; i < navB.length; i++) {
+          navB[i].disabled = false;
+        }
+
+        let r = {
+          callStatus: "3",
+          username: username,
+          callId: callId,
+          accept: true,
+          peerId: peerId,
+          name: name,
+          pic: pic,
+          clientId: clientId,
+        };
+
+        channel.publish(channelName, r);
+
+        showCallModal();
+        sTime = new Date();
+        duraTime();
+        hideRingPage();
+      };
+      const reject = () => {
+        stopCounter = true;
+
+        let r = {
+          callStatus: "4",
+          username: username,
+          callId: callId,
+          accept: false,
+        };
+        channel.publish(channelName, r);
+        saveCallLogs(
+          reciUser,
+          time_stamp,
+          incoming,
+          _mode,
+          "2",
+          duration,
+          callId
+        );
+        window.location.reload();
+      };
+
+      const endCall = async () => {
+        stopCounter = true;
+        document.getElementById("counter").innerText = "Call Ended";
+        let r = {
+          callStatus: "5",
+          username: username,
+          callId: callId,
+        };
+        await channel.publish(channelName, r);
+
+        if (abort) {
+          var data = {
+            callId: callId,
+            callerId: username,
+            timeStamp: time_stamp,
+            type: _mode,
+          };
+          await sendNotification(data, "abort");
+
+          saveCallLogs(
+            reciUser,
+            time_stamp,
+            incoming,
+            _mode,
+            "2",
+            duration,
+            callId
+          );
+        } else {
+          saveCallLogs(
+            reciUser,
+            time_stamp,
+            incoming,
+            _mode,
+            _status,
+            duration,
+            callId
+          );
+        }
+
+        window.location.reload();
+      };
+      /* Call logs starts here */
+      const saveCallLogs = (
+        number,
+        time_stamp,
+        incoming,
+        mode,
+        status,
+        duration,
+        callId
+      ) => {
+        let log = {};
+        log[callId] = {
+          time_stamp: time_stamp,
+          incoming: incoming,
+          mode: mode,
+          status: status,
+          duration: duration,
+        };
+
+        console.table(log);
+        localStorage.hasOwnProperty("history")
+          ? console.log("")
+          : localStorage.setItem("history", "{}");
+        let currentLog = JSON.parse(localStorage.history);
+        currentLog[number] = { ...log, ...currentLog[number] };
+        localStorage.setItem("history", JSON.stringify(currentLog));
+      };
+      const formatDuration = (duration) => {
+        const hours = Math.floor(duration / 3600);
+        const minutes = Math.floor((duration % 3600) / 60);
+        const seconds = duration % 60;
+
+        let result = "";
+
+        if (hours > 0) {
+          result += `${hours}h `;
+        }
+        if (minutes > 0) {
+          result += `${minutes}m `;
+        }
+        if (seconds > 0 || (hours === 0 && minutes === 0)) {
+          result += `${seconds}s`;
+        }
+
+        return result.trim();
+      };
+
+      const getLogTime = (time) => {
+        const date = new Date(time);
+        const now = new Date();
+
+        const months = [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec",
+        ];
+        let result = "";
+        if (date.toLocaleDateString() === now.toLocaleDateString()) {
+          let hours = date.getHours();
+          let minutes = date.getMinutes();
+          const period = hours >= 12 ? "pm" : "am";
+          hours = hours % 12;
+          hours = hours ? hours : 12;
+          minutes = minutes < 10 ? `0${minutes}` : minutes;
+          result = `${hours}:${minutes} ${period}`;
+        } else {
+          result = `${date.getDate()} ${months[date.getMonth()]}`;
+        }
+
+        return result;
+      };
+      const getMissCall = (array) => {
+        let result = 0;
+        while (result < array.length) {
+          if (array[result]["status"] == "0") {
+            result++;
+          } else {
+            break;
+          }
+        }
+        return result;
+      };
+
+      const checkUnknown = (num) => {
+        let result = -1;
+        userContact.forEach((item) => {
+          let numArray = sortingNumber(item.phoneNumbers);
+          numArray.forEach((i) => {
+            if (i.id == num) {
+              result = userContact.indexOf(item);
+            }
+          });
+        });
+        return result;
+      };
+      const statusText = (status, duration) => {
+        let text = "";
+        if (status == "0") {
+          text = `Missed call`;
+        }
+        if (status == "1") {
+          text = `${formatDuration(duration)}`;
+        }
+        if (status == "2") {
+          text = `Could'nt connect`;
+        }
+        return text;
+      };
+
+      const showLogs = () => {
+        $(".recentCard").remove();
+        if (!localStorage.hasOwnProperty("history")) {
+          displayBlock(["emptyRecent"]);
+          return;
+        }
+        let logs = JSON.parse(localStorage.history);
+        if (Object.keys(logs).length != 0) {
+          displayNone(["emptyRecent"]);
+
+          let sortedHistory = sortHistory(Object.keys(logs), logs);
+
+          sortedHistory.forEach((contact) => {
+            console.log(`making history for: ${contact}`);
+            let sortedLogs = sortLogs(Object.values(logs[contact]));
+            let recentLog = sortedLogs[0];
+            let missCount = getMissCall(sortedLogs);
+            var parentDiv = createDiv({
+              classList: ["recentCard"],
+              click: `showContact(${checkUnknown(contact)},'${contact}')`,
+            });
+            parentDiv.appendChild(createImg({ src: avtar }));
+            var div1 = createDiv();
+            var div2 = createDiv();
+            var p1 = createPara({
+              style: `color: grey; font-size: 14px;`,
+              text: `${statusText(
+                recentLog.status,
+                recentLog.duration
+              )}, ${getLogTime(recentLog.time_stamp)}`,
+            });
+            p1.insertBefore(
+              createSpan({
+                classList: ["material-symbols-outlined"],
+                text: `${recentLog.incoming ? "call_received" : "call_made"}`,
+              }),
+              p1.firstChild
+            );
+            div2.appendChild(p1);
+            div1.appendChild(
+              createPara({
+                style: `font-size: 18px; color: ${
+                  missCount > 0 ? "red" : "white"
+                };`,
+                text: `${queryName(contact)} ${
+                  missCount > 0 ? "(" + missCount + ")" : ""
+                }`,
+              })
+            );
+            div1.appendChild(div2);
+            parentDiv.appendChild(div1);
+            var but = createBut();
+            but.appendChild(
+              createSpan({
+                classList: ["material-symbols-outlined"],
+                text: "chevron_right",
+              })
+            );
+            parentDiv.appendChild(but);
+            appendChild("recent", parentDiv);
+            /* parentDiv>button(span),img,div1>p,div2>p>span */
+
+            /* var inHtml = `
+            <div class="recentCard" onclick="showContact(${checkUnknown(
+              contact
+            )},'${contact}')">
+            <img src="${avtar}" alt="" />
+            <div >
+              <p style="font-size: 18px; color:${
+                missCount > 0 ? "red" : "white"
+              };">${queryName(contact)} ${
+              missCount > 0 ? "(" + missCount + ")" : ""
+            }</p>
+              <div>
+                <p style="color: grey; font-size: 14px">
+                  <span class="material-symbols-outlined"> ${
+                    recentLog.incoming ? "call_received" : "call_made"
+                  } </span>
+                ${statusText(
+                  recentLog.status,
+                  recentLog.duration
+                )}, ${getLogTime(recentLog.time_stamp)}
+                </p>
+              </div>
+            </div>
+            <button >
+              <span class="material-symbols-outlined"> chevron_right </span>
+            </button>
+          </div>
+          `;
+            $("#recent").append(inHtml); */
+          });
+        } else {
+          displayBlock(["emptyRecent"]);
+        }
+      };
+      function clearCallLogs() {
+        localStorage.setItem("history", "{}");
+        showLogs();
+      }
+      const sortLogs = (array) => {
+        array.sort((a, b) => {
+          let t1 = new Date(a.time_stamp);
+          let t2 = new Date(b.time_stamp);
+          return t2 - t1;
+        });
+        return array;
+      };
+      const sortHistory = (array, logs) => {
+        array.sort((a, b) => {
+          let t1 = new Date(sortLogs(Object.values(logs[a]))[0]["time_stamp"]);
+          let t2 = new Date(sortLogs(Object.values(logs[b]))[0]["time_stamp"]);
+          return t2 - t1;
+        });
+        return array;
+      };
+      const showCallHistory = (id, pre) => {
+        $(".hist").remove();
+        if (!localStorage.hasOwnProperty("history")) return;
+        let hist = JSON.parse(localStorage.history);
+        if (hist.hasOwnProperty(id)) {
+          displayBlock(["log"]);
+          document
+            .getElementById("cL")
+            .setAttribute("onclick", `clearLog('${id}')`);
+          let sortedLogs = sortLogs(Object.values(hist[id]));
+          let index = 0;
+          while (index < sortedLogs.length) {
+            const log = sortedLogs[index];
+            var hDiv = createDiv({ classList: ["hist"] });
+            hDiv.appendChild(
+              createSpan({
+                classList: ["material-symbols-outlined"],
+                text: `${log.incoming ? "call_received" : "call_made"}`,
+              })
+            );
+            var cDiv = createDiv();
+            cDiv.appendChild(
+              createPara({ text: `${getLogTime(log.time_stamp)}` })
+            );
+            cDiv.appendChild(
+              createPara({ text: `${statusText(log.status, log.duration)}` })
+            );
+            hDiv.appendChild(cDiv);
+            hDiv.appendChild(
+              createSpan({
+                classList: ["material-symbols-outlined", "fill"],
+                text: `${log.mode == "video" ? "videocam" : "call"}`,
+              })
+            );
+            appendChild("log", hDiv);
+            /* var inHtml = `
+              <div class="hist">
+                <span class="material-symbols-outlined">  ${
+                  log.incoming ? "call_received" : "call_made"
+                } </span>
+                <div>
+                  <p>${getLogTime(log.time_stamp)}</p>
+                  <p>${statusText(log.status, log.duration)}</p>
+                </div>
+                <span class="material-symbols-outlined fill"> ${
+                  log.mode == "video" ? "videocam" : "call"
+                } </span>
+              </div>
+              `;
+
+            $("#log").append(inHtml); */
+            index++;
+            if (pre && index > 0) {
+              displayBlock(["sm"]);
+              break;
+            } else {
+              displayNone(["sm"]);
+            }
+          }
+          if (sortedLogs.length > 1) {
+            document
+              .getElementById("sm")
+              .setAttribute("onclick", `showCallHistory('${id}',false);`);
+          } else {
+            displayNone(["sm"]);
+          }
+        } else {
+          displayNone(["sm", "log"]);
+        }
+      };
+
+      const clearLog = (id) => {
+        if (!localStorage.hasOwnProperty("history")) return;
+        let log = JSON.parse(localStorage.history);
+        if (log.hasOwnProperty(id)) {
+          delete log[id];
+          localStorage.setItem("history", JSON.stringify(log));
+          showLogs();
+          displayNone(["sm", "log"]);
+        }
+      };
+      /* Call logs ends here */
+      const muteVideo = () => {
+        displayNone(["videoHide", "dragVid"]);
+        displayBlock(["dragMuted"]);
+        displayInlineGrid(["videoShow"]);
+
+        videoTrack.enabled = false;
+        let r = {
+          callStatus: "mv",
+          username: username,
+          callId: callId,
+        };
+        channel.publish(channelName, r);
+      };
+      const unMuteVideo = () => {
+        displayInlineGrid(["videoHide"]);
+        displayNone(["dragMuted", "videoShow"]);
+        displayBlock(["dragVid"]);
+
+        videoTrack.enabled = true;
+        let r = {
+          callStatus: "uv",
+          username: username,
+          callId: callId,
+        };
+        channel.publish(channelName, r);
+      };
+      const muteAudio = () => {
+        displayNone(["muteMic"]);
+        displayInlineGrid(["Mic"]);
+
+        audioTrack.enabled = false;
+        let r = {
+          callStatus: "ma",
+          username: username,
+          callId: callId,
+        };
+        channel.publish(channelName, r);
+      };
+      const unMuteAudio = () => {
+        displayInlineGrid(["muteMic"]);
+        displayNone(["Mic"]);
+
+        audioTrack.enabled = true;
+        let r = {
+          callStatus: "ua",
+          username: username,
+          callId: callId,
+        };
+        channel.publish(channelName, r);
+      };
+
+      const switchCamera = async () => {
+        videoTrack.stop();
+        var ind = document.getElementById("switchCamera").dataset.cam;
+        navigator.mediaDevices
+          .enumerateDevices()
+          .then(function (devices) {
+            devices.forEach(function (device) {
+              if (device.kind === "videoinput") {
+                if (device.deviceId != ind) {
+                  navigator.mediaDevices
+                    .getUserMedia({
+                      video: {
+                        deviceId: {
+                          exact: device.deviceId,
+                        },
+                      },
+                    })
+                    .then((stream) => {
+                      document.getElementById("dragVid").srcObject = stream;
+
+                      callState.peerConnection
+                        .getSenders()
+                        .forEach((sender) => {
+                          if (sender.track.kind === "video") {
+                            sender.replaceTrack(stream.getVideoTracks()[0]);
+                            videoTrack = stream.getVideoTracks()[0];
+                            document.getElementById(
+                              "switchCamera"
+                            ).dataset.cam =
+                              videoTrack.getCapabilities().deviceId;
+                          }
+                        });
+                    });
+                }
+              }
+            });
+          })
+          .catch(function (error) {
+            console.error("Error enumerating devices:", error);
+          });
+      };
+      const makeAudioCall = async (num) => {
+        const exist = await checkExist(num);
+        if (exist == false) {
+          showDel("", "s");
+          return;
+        }
+
+        playSound("dialPlayer");
+        to_name = queryName(num);
+        to_pic = exist.pic;
+        reciGen = exist.gender;
+        callId = parseInt(Math.random() * 100000);
+        channelName = "r_" + callId;
+        saveUser("c_" + callId);
+        status = false;
+        document.getElementById("reciUsername").innerText = to_name;
+        document.getElementById("reciPic").src = to_pic;
+        document.getElementById("localMuted_img1").src = to_pic;
+        document.getElementById("localMuted_img2").src = to_pic;
+
+        reciUser = num;
+        time_stamp = new Date().toISOString();
+        _mode = "audio";
+        incoming = false;
+        _status = "2";
+        const data = {
+          callerId: username,
+          callId: callId,
+          name: name,
+          pic: pic,
+          to_name: to_name,
+          to_pic: to_pic,
+          callStatus: "1",
+          gender: gender,
+          clientId: clientId,
+          timeStamp: time_stamp,
+          type: _mode,
+        };
+        navigator.mediaDevices
+          .getUserMedia({ video: true, audio: true })
+          .then((stream) => {
+            const myVid = document.getElementById("localVideo");
+            myVid.srcObject = stream;
+            myVid.muted = true;
+
+            localStream = stream;
+            audioTrack = localStream.getAudioTracks()[0];
+            videoTrack = localStream.getVideoTracks()[0];
+            document.getElementById("switchCamera").dataset.cam =
+              videoTrack.getCapabilities().deviceId;
+            displayInlineGrid(["videoShow"]);
+            displayNone(["dragVid", "videoHide", "localVideo"]);
+            displayBlock(["dragMuted", "localVideoMuted"]);
+            videoTrack.enabled = false;
+          });
+
+        document.getElementById("counter").innerText = "Calling...";
+        hideStatusBar();
+        showCallModal();
+
+        document.getElementById("dragMuted_img1").src = pic;
+        document.getElementById("dragMuted_img2").src = pic;
+
+        channel.publish(channelName, data);
+        sendNotification(data, "call");
+
+        autoCut = setTimeout(() => {
+          endCall();
+        }, 63000);
+      };
+
+      const makeCall = async (num) => {
+        const exist = await checkExist(num);
+        if (exist == false) {
+          showDel("", "s");
+          return;
+        }
+
+        displayNone(["dragVid"]);
+        displayBlock(["dragMuted"]);
+
+        playSound("dialPlayer");
+        callId = parseInt(Math.random() * 100000);
+        channelName = "r_" + callId;
+        saveUser("c_" + callId);
+        status = false;
+        to_name = queryName(num);
+        to_pic = exist.pic;
+        reciGen = exist.gender;
+        document.getElementById("reciUsername").innerText = to_name;
+        document.getElementById("reciPic").src = to_pic;
+        document.getElementById("localMuted_img1").src = to_pic;
+        document.getElementById("localMuted_img2").src = to_pic;
+
+        reciUser = num;
+        time_stamp = new Date().toISOString();
+        _mode = "video";
+        incoming = false;
+        _status = "2";
+        const data = {
+          callerId: username,
+          callId: callId,
+          name: name,
+          pic: pic,
+          to_name: to_name,
+          to_pic: to_pic,
+          callStatus: "1",
+          clientId: clientId,
+          timeStamp: time_stamp,
+          gender: gender,
+          type: _mode,
+        };
+        navigator.mediaDevices
+          .getUserMedia({ video: true, audio: true })
+          .then((stream) => {
+            console.log("we got the stream here");
+            console.log(stream);
+            const myVid = document.getElementById("localVideo");
+            myVid.srcObject = stream;
+            myVid.muted = true;
+
+            localStream = stream;
+            audioTrack = localStream.getAudioTracks()[0];
+            videoTrack = localStream.getVideoTracks()[0];
+            document.getElementById("switchCamera").dataset.cam =
+              videoTrack.getCapabilities().deviceId;
+          });
+
+        document.getElementById("counter").innerText = "Calling...";
+        hideStatusBar();
+        showCallModal();
+        document.getElementById("dragMuted_img1").src = pic;
+        document.getElementById("dragMuted_img2").src = pic;
+        channel.publish(channelName, data);
+        sendNotification(data, "call");
+        autoCut = setTimeout(() => {
+          endCall();
+        }, 63000);
+      };
+      const sendNotification = async (data, event) => {
+        data.phoneNumber = reciUser;
+        data.event = event;
+
+        const options = {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        };
+        const req = await fetch(
+          "https://comradeeco.pythonanywhere.com/pubCall",
+          options
+        );
+        const response = await req.json();
+        console.log(response);
+      };
+
+      interact(".draggable").draggable({
+        inertia: true,
+
+        modifiers: [
+          interact.modifiers.restrictRect({
+            restriction: "parent",
+            endOnly: false,
+          }),
+        ],
+
+        autoScroll: false,
+
+        listeners: {
+          move: dragMoveListener,
+          end: (event) => {
+            let target = event.target;
+            let dy =
+              window.innerHeight - document.getElementById("dr").clientHeight;
+            let x =
+              event.client.x < window.innerWidth / 2
+                ? 10
+                : window.innerWidth - event.rect.width - 10;
+            let y =
+              event.client.y < window.innerHeight / 2
+                ? 10
+                : window.innerHeight - event.rect.height - 10 - dy;
+
+            target.style.transform = "translate(" + x + "px, " + y + "px)";
+
+            document.getElementById("dragMuted").style.transform =
+              "translate(" + x + "px, " + y + "px)";
+
+            target.setAttribute("data-x", x);
+            target.setAttribute("data-y", y);
+          },
+        },
+      });
+
+      function dragMoveListener(event) {
+        var target = event.target;
+
+        var x = (parseFloat(target.getAttribute("data-x")) || 0) + event.dx;
+        var y = (parseFloat(target.getAttribute("data-y")) || 0) + event.dy;
+
+        target.style.transform = "translate(" + x + "px, " + y + "px)";
+
+        target.setAttribute("data-x", x);
+        target.setAttribute("data-y", y);
+      }
+
+      window.dragMoveListener = dragMoveListener;
+
+      function toggleNav() {
+        if (toggleN) return;
+        document.getElementById("vidOpt").classList.toggle("vidOptHide");
+        document.getElementById("navTop").classList.toggle("vidOptHide");
+        var cL = document
+          .getElementById("vidOpt")
+          .classList.contains("vidOptHide");
+        var bt = cL ? "10px" : "140px";
+        hideStatusBar();
+      }
+
+      //timer
+      const meetingDurationElement = document.getElementById("counter");
+
+      function updateMeetingDuration() {
+        if (stopCounter) return;
+        displayInlineGrid(["counter"]);
+        if (sTime) {
+          // Calculate the current duration in seconds
+          const currentTime = new Date();
+          duration = Math.floor((currentTime - sTime) / 1000);
+
+          // Format the duration as hours, minutes, and seconds
+          const hours = Math.floor(duration / 3600);
+          const minutes = Math.floor((duration % 3600) / 60);
+          const seconds = duration % 60;
+
+          // Build the duration string without leading zeros
+          let durationString = "";
+          if (hours > 0) {
+            durationString += `${hours}:`;
+          }
+          if (minutes > 0 || hours > 0) {
+            durationString += `${minutes}:`;
+          }
+          durationString += `${String(seconds).padStart(2, "0")}`;
+
+          // Display the formatted duration
+          meetingDurationElement.textContent = durationString;
+        }
+      }
+
+      function duraTime() {
+        setInterval(updateMeetingDuration, 1000);
+      }
+      function showRingpage(src) {
+        var name = queryName(reciUser);
+        document.getElementById("vidOpt").classList.toggle("vidOptHide");
+        document.getElementById("navTop").classList.toggle("vidOptHide");
+        toggleN = true;
+
+        document.getElementById("ringPic").src = src;
+        document.getElementById("reciPic").src = src;
+        document.getElementById("localMuted_img1").src = pic;
+        document.getElementById("localMuted_img2").src = pic;
+        document.getElementById("reciUsername").innerText = name; //username to show (reciever side)
+        document.getElementById("ringName").innerText = name;
+        document.getElementById("phoneNumber").innerText = `+91 ${reciUser}`;
+        displayBlock(["ringPage"]);
+
+        playSound("ringPlayer");
+      }
+      function hideRingPage() {
+        document.getElementById("ringPlayer").pause();
+        document.getElementById("vidOpt").classList.toggle("vidOptHide");
+        document.getElementById("navTop").classList.toggle("vidOptHide");
+        toggleN = false;
+        displayNone(["ringPage"]);
+      }
+
+      function searchStk(packName) {
+        $(".stkR").remove();
+
+        /* document.getElementById(packName).style.backgroundColor = "white" */
+        document.getElementById("stkTag").innerText = packName;
+        bgColor = document.getElementById(packName).dataset.color;
+        var url = `https://comradeeco.pythonanywhere.com/getStickers?stk=${packName}`;
+        fetch(url, { method: "GET" })
+          .then((res) => {
+            return res.json();
+          })
+          .then((response) => {
+            response.data.forEach((data) => {
+              var stkHtml = `
+                    <img src="${data.gifUrl}" class="stkR" onclick="broadCastStk(this)" >
+                    `;
+              $("#contStk").append(stkHtml);
+            });
+          });
+      }
+
+      function getStk(packName) {
+        const element = document.getElementById(packName);
+        element.scrollIntoView({
+          behavior: "smooth",
+          block: "nearest",
+          inline: "center",
+        });
+      }
+
+      let resTime;
+      function openStk() {
+        // toggleN = true;
+        displayInlineGrid(["celeb_closeYT", "celeb_close"]);
+        displayNone(["celeb", "celebYT", "navTop", "vidOpt"]);
+        displayGrid(["stkCont"]);
+
+        const scrollContainer = document.getElementById("stkShowCase");
+        const scrollItems = document.querySelectorAll(".rClass");
+
+        const stkObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                clearTimeout(resTime);
+                resTime = setTimeout(() => {
+                  searchStk(entry.target.id);
+                }, 500);
+              }
+            });
+          },
+          {
+            root: scrollContainer,
+            rootMargin: `0px -50% 0px -50% `,
+            threshold: 0,
+          }
+        );
+
+        scrollItems.forEach((item) => {
+          stkObserver.observe(item);
+        });
+      }
+
+      function closeStk() {
+        displayInlineGrid(["celebYT", "celeb"]);
+        displayGrid(["navTop", "vidOpt"]);
+        displayNone(["celeb_close", "celeb_closeYT", "stkCont"]);
+      }
+
+      function broadCastStk(obj) {
+        let r = {
+          username: username,
+          pic: pic,
+          name: name,
+          src: obj.src,
+          callId: callId,
+          bgColor: bgColor,
+          callStatus: "stk",
+        };
+        channel.publish(channelName, r);
+        closeStk();
+        showReact(obj.src, "You", pic, bgColor);
+      }
+      let closeNowVar;
+      function showReact(src, n, pic, bgColor) {
+        let name = n == "You" ? "You" : queryName(reciUser);
+        document.getElementById("reaction").src = src;
+        document.getElementById("reactorImg").src = pic;
+        document.getElementById("reactorName").innerText = name;
+        document.getElementById("react").style.backgroundColor = bgColor;
+        displayBlock(["react"]);
+        setTimeout(() => {
+          document.getElementById("reactInfo").style.opacity = "1";
+        }, 500);
+
+        closeNowVar = setTimeout(() => {
+          document.getElementById("reaction").src = "";
+
+          displayNone(["react"]);
+        }, 5000);
+      }
+
+      function closeNow() {
+        document.getElementById("reactInfo").style.opacity = "0";
+        displayNone(["react"]);
+        clearTimeout(closeNowVar);
+      }
+
+      document.getElementById("ytInput").addEventListener("keyup", (e) => {
+        if (e.key === "Enter" || e.keyCode === 13) {
+          var q = document.getElementById("ytInput").value;
+          searchYouTube(q);
+        }
+      });
+      function playThis(id) {
+        let r = {
+          username: username,
+          callId: callId,
+          callStatus: "YT",
+          YT_ID: id,
+        };
+        channel.publish(channelName, r);
+        isPlayer = true;
+        playTube(id, isPlayer);
+      }
+      function hideTube() {
+        if (hiddenYT == true) return;
+        document.getElementById("iframeCont").style.height = "0px";
+        displayNone(["hideTube"]);
+        displayInlineGrid(["showYT"]);
+        let h = "100dvh";
+        document.getElementById("dr").style.height = h;
+        document.getElementById("localVideo").style.height = h;
+        document.getElementById("localVideoMuted").style.height = h;
+        document.getElementById("vc_cont").style.height = h;
+        let r = {
+          username: username,
+          callId: callId,
+          callStatus: "hYT",
+        };
+        channel.publish(channelName, r);
+        hiddenYT = true;
+      }
+
+      function showYT() {
+        if (hiddenYT == false) return;
+        document.getElementById("iframeCont").style.height = "";
+        displayInlineGrid(["hideTube"]);
+        displayNone(["showYT"]);
+        let h = `${window.innerHeight - window.innerWidth * (9 / 16)}px`;
+        document.getElementById("dr").style.height = h;
+        document.getElementById("localVideo").style.height = h;
+        document.getElementById("localVideoMuted").style.height = h;
+        document.getElementById("vc_cont").style.height = h;
+        let r = {
+          username: username,
+          callId: callId,
+          callStatus: "sYT",
+        };
+        channel.publish(channelName, r);
+        hiddenYT = false;
+      }
+
+      function closeTube() {
+        if (closedYT) return;
+        document.getElementById(
+          "iframeCont"
+        ).innerHTML = `<div id="hideTitle"></div>
+                        <div id="hideLogo"></div>
+                        <div id="iframe">     
+                        </div>`;
+
+        displayGrid(["vidOpt"]);
+        displayBlock(["navTop"]);
+        displayNone(["hideLogo", "hideTitle", "ytOpt"]);
+        let h = "100dvh";
+        document.getElementById("dr").style.height = h;
+        document.getElementById("localVideo").style.height = h;
+        document.getElementById("localVideoMuted").style.height = h;
+        document.getElementById("vc_cont").style.height = h;
+        let r = {
+          username: username,
+          callId: callId,
+          callStatus: "cYT",
+        };
+        channel.publish(channelName, r);
+        closedYT = true;
+      }
+
+      function playTube(id, isPlayer) {
+        displayNone(["ytS"]);
+        closedYT = false;
+        displayNone(["navTop", "vidOpt"]);
+        displayGrid(["ytOpt"]);
+        displayBlock(["hideTitle", "hideLogo"]);
+        document.getElementById("hideTitle").style.height = isPlayer
+          ? "50px"
+          : `${window.innerWidth * (9 / 16)}px`;
+        document.getElementById("hideLogo").style.top = `${
+          window.innerWidth * (9 / 16)
+        }px`;
+        let h = `${window.innerHeight - window.innerWidth * (9 / 16)}px`;
+        document.getElementById("dr").style.height = h;
+        document.getElementById("localVideo").style.height = h;
+        document.getElementById("localVideoMuted").style.height = h;
+        document.getElementById("vc_cont").style.height = h;
+        var existingIframe = document.getElementById("myFrame");
+
+        player = new YT.Player(existingIframe, {
+          videoId: id,
+          events: {
+            onStateChange: onPlayerStateChange,
+          },
+          playerVars: {
+            autoplay: true,
+            fs: false,
+            rel: 0,
+            controls: isPlayer ? 1 : 0,
+          },
+        });
+      }
+
+      function seekPlay(time) {
+        player.seekTo(time, true);
+        player.playVideo();
+      }
+      function seekPause(time) {
+        player.seekTo(time, true);
+        player.pauseVideo();
+      }
+
+      function onPlayerStateChange(event) {
+        player.setVolume(100);
+        player.unMute();
+
+        if (isPlayer) {
+          playerState = event.data;
+
+          if (playerState == YT.PlayerState.PLAYING) {
+            clearTimeout(t);
+            t = setTimeout(() => {
+              let r = {
+                username: username,
+                callId: callId,
+                callStatus: "seekPlay",
+                time: player.getCurrentTime(),
+              };
+              channel.publish(channelName, r);
+            }, 2000);
+          }
+
+          if (playerState == YT.PlayerState.PAUSED) {
+            clearTimeout(t);
+            t = setTimeout(() => {
+              let r = {
+                username: username,
+                callId: callId,
+                callStatus: "seekPause",
+                time: player.getCurrentTime(),
+              };
+              channel.publish(channelName, r);
+            }, 2000);
+          }
+        }
+      }
+
+      function searchYouTube(query) {
+        $(".ytResult").remove();
+        const apiUrl = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&part=snippet&q=${query}&maxResults=10&type=video`;
+
+        fetch(apiUrl)
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            let videos = data.items.map((item) => {
+              return {
+                id: item.id.videoId,
+                title: item.snippet.title,
+                channel: item.snippet.channelTitle,
+                img: item.snippet.thumbnails.medium.url,
+              };
+            });
+            videos.forEach((item) => {
+              var innerH = `
+                <div class="ytVid ytResult" >
+                    <img src="${item.img}" onclick="playThis('${item.id}')">
+                    <div>
+                        <p onclick="playThis('${item.id}')" >${item.title}</p>
+                        <p onclick="playThis('${item.id}')" >${item.channel}</p>
+                    </div>
+                </div>
+                `;
+              $("#ytCont").append(innerH);
+            });
+            console.log(videos);
+          })
+          .catch((error) => {
+            console.error("Error fetching data:", error);
+          });
+      }
+
+      //searchYouTube("New Songs")
+
+      const target = document.getElementById("contact");
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              document.getElementById("callTag").classList.remove("activeIcon");
+              document.getElementById("personTag").classList.add("activeIcon");
+            } else {
+              document.getElementById("callTag").classList.add("activeIcon");
+              document
+                .getElementById("personTag")
+                .classList.remove("activeIcon");
+            }
+          });
+        },
+        {
+          root: document.querySelector("body"),
+          threshold: 0.5,
+        }
+      );
+
+      observer.observe(target);
+
+      //testing
+
+      function pauseIt() {
+        document.getElementById("localVideo").pause();
+        document.getElementById("dragVid").pause();
+      }
+      function playIt() {
+        document.getElementById("localVideo").play();
+        document.getElementById("dragVid").play();
+      }
+      let alphaMap = [];
+      function wherePut(name) {
+        const firstLetter = name.slice(0, 1).toLowerCase();
+        if (alphaMap.includes(firstLetter) == false) {
+          /*  const inH = `
+                <div class="alphaCont" id="cont_${firstLetter}">
+                <p class="alphaContp">${firstLetter}</p>    
+                </div>
+                `;
+                $("#contactSlot").append(inH); */
+          var cnt = createDiv({
+            classList: ["alphaCont"],
+            id: `cont_${firstLetter}`,
+          });
+          cnt.appendChild(
+            createPara({ classList: ["alphaContp"], text: firstLetter })
+          );
+          appendChild("contactSlot", cnt);
+          alphaMap.push(firstLetter);
+        }
+        return `cont_${firstLetter}`;
+      }
+      async function setContacts() {
+        userContact = await getUserContacts();
+        userContact.sort((a, b) => (a.displayName > b.displayName ? 1 : -1));
+        document
+          .getElementById("recentSearch")
+          .setAttribute("placeholder", `${userContact.length} contacts`);
+        document
+          .getElementById("contactSearch")
+          .setAttribute("placeholder", `${userContact.length} contacts`);
+        userContact.forEach((item) => {
+          console.log(item);
+          const thumb = item.photoThumbnail ? item.photoThumbnail : avtar;
+          var parentEle = createDiv({
+            classList: ["contactCard"],
+            click: `showContact(${userContact.indexOf(item)})`,
+          });
+          parentEle.appendChild(createImg({ src: thumb }));
+          parentEle.appendChild(createPara({ text: item.displayName }));
+          appendChild(wherePut(item.displayName), parentEle);
+          /* var inHtml = `
+                        <div class="contactCard" onclick="showContact(${userContact.indexOf(
+                          item
+                        )})">
+                             <img src="${thumb}" alt="">
+                             <p>${item.displayName}</p>
+                        </div>
+                        `;
+          $(wherePut(item.displayName)).append(inHtml); */
+        });
+        showLogs();
+      }
+      const trimNum = (num) => {
+        return num
+          .replaceAll(" ", "")
+          .replaceAll("-", "")
+          .replaceAll("+91", "");
+      };
+      async function showContact(index, unknown = "2102") {
+        if (index != -1) {
+          let item = userContact[index];
+          let name = item["displayName"];
+          let numArray = item["phoneNumbers"];
+          let contactId = item["contactId"];
+          let thumb = item.photoThumbnail ? item.photoThumbnail : avtar;
+          let blocked =
+            JSON.parse(localStorage.blocked).indexOf(
+              trimNum(numArray[0].number)
+            ) == -1
+              ? false
+              : true;
+          showNums(numArray);
+          document.getElementById("proPic").src = thumb;
+          document.getElementById("proName").innerText = name;
+
+          displayNone(["saver"]);
+          displayInlineGrid(["deleter"]);
+          document
+            .getElementById("deleter")
+            .setAttribute("onclick", `showDel('${contactId}','d')`);
+          document
+            .getElementById("blocker")
+            .setAttribute("onclick", `showDel('${numArray[0].number}','b')`);
+          document
+            .getElementById("unblocker")
+            .setAttribute("onclick", `showDel('${numArray[0].number}','u')`);
+          document
+            .getElementById("sharer")
+            .setAttribute(
+              "onclick",
+              `shareContact('${name}','${numArray[0].number}')`
+            );
+          document.getElementById("blocker").style.display = blocked
+            ? "none"
+            : "inline-grid";
+          document.getElementById("unblocker").style.display = blocked
+            ? "inline-grid"
+            : "none";
+        } else {
+          let num = `+91 ${unknown}`;
+          let blocked =
+            JSON.parse(localStorage.blocked).indexOf(trimNum(unknown)) == -1
+              ? false
+              : true;
+          showNums([{ label: "Not saved", number: num }]);
+          document.getElementById("proPic").src = avtar;
+          document.getElementById("proName").innerText = "Unknown";
+
+          displayNone(["deleter"]);
+          displayInlineGrid(["saver"]);
+          document
+            .getElementById("saver")
+            .setAttribute("onclick", `createContact(' ','${num}')`);
+          document
+            .getElementById("sharer")
+            .setAttribute("onclick", `shareContact('Unknown','${num}')`);
+          document
+            .getElementById("blocker")
+            .setAttribute("onclick", `showDel('${unknown}','b')`);
+          document
+            .getElementById("unblocker")
+            .setAttribute("onclick", `showDel('${unknown}','u')`);
+          document.getElementById("blocker").style.display = blocked
+            ? "none"
+            : "inline-grid";
+          document.getElementById("unblocker").style.display = blocked
+            ? "inline-grid"
+            : "none";
+        }
+
+        $("#contactInfo").modal("show");
+      }
+
+      function showNums(array) {
+        const numArray = sortingNumber(array);
+        document.getElementById("numCont").innerHTML = "";
+        showCallHistory(`${numArray[0].id}`, true);
+        numArray.forEach((item) => {
+          var dDiv = createDiv({
+            classList: ["divider"],
+            style: `width:100%;`,
+          });
+          dDiv.appendChild(createPara({ text: `${item.label}` }));
+          dDiv.appendChild(document.createElement("hr"));
+          appendChild("numCont", dDiv);
+          var cDet = createDiv({ classList: ["contactDet"] });
+          cDet.appendChild(createPara({ text: `${item.number}` }));
+          cDet.appendChild(createPara({ text: `${item.label}` }));
+          appendChild("numCont", cDet);
+          var cBW = createDiv({ classList: ["callButWrap"] });
+          var cBT = createBut({
+            click: `makeAudioCall('${item.id}')`,
+            style: `background-color:#27b14e;`,
+          });
+          cBT.appendChild(
+            createSpan({
+              classList: ["material-symbols-outlined", "fill"],
+              text: "call",
+            })
+          );
+          cBT.appendChild(createPara({ text: "Audio Call" }));
+          cBW.appendChild(cBT);
+          //
+          var cBTV = createBut({
+            click: `makeCall('${item.id}')`,
+            style: `background-color: #1578dd;`,
+          });
+          cBTV.appendChild(
+            createSpan({
+              classList: ["material-symbols-outlined", "fill"],
+              text: "videocam",
+            })
+          );
+          cBTV.appendChild(createPara({ text: "Video Call" }));
+          cBW.appendChild(cBTV);
+          //
+          appendChild("numCont", cBW);
+
+          /* const inHtml = `
+                  <div class="divider" style="width:100%;">
+                        <p>${item.label}</p>
+                        <hr>
+                    </div>
+                 <div class="contactDet">
+                            <p  >${item.number}</p>
+                            <p >${item.label} | India</p>
+                        </div>
+                        <div class="callButWrap">
+                        <button onclick="makeAudioCall('${item.id}')" style="background-color:#27b14e;">
+                           <span class="material-symbols-outlined fill" >
+                                call
+                            </span>
+                            <p>
+                            Audio Call
+                          </p>
+                           
+                        </button>
+                        <button onclick="makeCall('${item.id}')" style="background-color: #1578dd;">
+                            <span class="material-symbols-outlined fill" >
+                                videocam
+                            </span>
+                            <p>
+                                Video Call
+                            </p>
+                           
+                        </button>
+                            
+                        </div>
+                       
+                `;
+          $("#numCont").append(inHtml); */
+        });
+      }
+      function sortingNumber(array) {
+        let y = [];
+        let newArray = [];
+        array.forEach((element) => {
+          let n = element.number.replaceAll(" ", "").replaceAll("-", "");
+          let ns = n.slice(n.length - 10, n.length);
+          if (y.includes(ns) == false) {
+            element.id = ns;
+            newArray.push(element);
+            y.push(ns);
+          }
+        });
+        return newArray;
+      }
+      function queryName(num) {
+        let name = "+91 " + num;
+        userContact.forEach((item) => {
+          let numArray = sortingNumber(item.phoneNumbers);
+          numArray.forEach((i) => {
+            if (i.id == num) {
+              name = item.displayName;
+            }
+          });
+        });
+        return name;
+      }
+      function searchContact(query) {
+        let results = [];
+        userContact.forEach((item) => {
+          let numArray = sortingNumber(item.phoneNumbers);
+          numArray.forEach((i) => {
+            if (i.id.includes(query) || item.displayName.includes(query)) {
+              results.push(item);
+            }
+          });
+        });
+        return results;
+      }
+      function highlighter(str, subStr) {
+        if (str.includes(subStr)) {
+          let index = str.indexOf(subStr);
+          let endIndex = index + subStr.length;
+          let finalText = createPara();
+          finalText.appendChild(
+            document.createTextNode(str.substring(0, index))
+          );
+          finalText.appendChild(
+            createSpan({ style: "color:wheat;", text: `${subStr}` })
+          );
+          finalText.appendChild(
+            document.createTextNode(str.substring(endIndex, str.length))
+          );
+          /* let finalText = `<p>${str.substring(
+            0,
+            index
+          )}<span style="color:wheat">${subStr}</span>${str.substring(
+            endIndex,
+            str.length
+          )}</p>`; */
+          return finalText;
+        } else {
+          var finalText = createPara({ text: str });
+          return finalText;
+        }
+      }
+      const typingSrch = (event) => {
+        $(".histCard").remove();
+        const query = event.target.value;
+        if (query.length == 0) return;
+        const results = searchContact(query);
+        if (results.length != 0) {
+          results.forEach((r) => {
+            const thumb = r.photoThumbnail ? r.photoThumbnail : avtar;
+            var hCard = createDiv({
+              classList: ["contactCard", "histCard"],
+              click: `showContact(${userContact.indexOf(r)})`,
+            });
+            hCard.appendChild(
+              createImg({ src: `${thumb}`, style: `height: 40px;` })
+            );
+            var gg = createDiv({
+              classList: ["hj"],
+            });
+            gg.appendChild(highlighter(r.displayName, query));
+            gg.appendChild(highlighter(r.phoneNumbers[0].id, query));
+            hCard.appendChild(gg);
+
+            appendChild("srCont", hCard);
+            /*  var inHtml = `
+                        <div class="contactCard histCard" onclick="showContact(${userContact.indexOf(
+                          r
+                        )})">
+                             <img src="${thumb}" style="height: 40px;" alt="">
+                             <div class="hj">
+                              ${highlighter(
+                                r.displayName,
+                                query
+                              )} ${highlighter(r.phoneNumbers[0].id, query)}
+                             
+                  
+                              </div>
+                            
+                        </div>
+                        `;
+            $("#srCont").append(inHtml); */
+          });
+        }
+      };
+      document
+        .getElementById("recentSearch")
+        .addEventListener("focus", (event) => {
+          document.getElementById("recentSrchBar").classList.add("srchTop");
+          hideNumPad();
+          showSearchCont();
+        });
+      document
+        .getElementById("contactSearch")
+        .addEventListener("focus", (event) => {
+          document.getElementById("contactSrchBar").classList.add("srchTop");
+          hideNumPad();
+          showSearchCont();
+        });
+      const showSearchCont = () => {
+        displayBlock(["searchCont"]);
+      };
+      const hideSearchCont = () => {
+        displayNone(["searchCont"]);
+        document.getElementById("recentSrchBar").classList.remove("srchTop");
+        document.getElementById("contactSrchBar").classList.remove("srchTop");
+        document.getElementById("contactSearch").value = "";
+        document.getElementById("recentSearch").value = "";
+        $(".histCard").remove();
+      };
+      async function checkExist(reci) {
+        const data = {
+          num: localStorage.getItem("sim"),
+          reci: reci,
+          SESSION: localStorage.getItem("SESSION"),
+        };
+
+        const url =
+          "https://comradeeco.pythonanywhere.com/comeet/getNumbersDetails";
+        const response = await fetchApi(url, data);
+        if (response.status) {
+          if (response.exist) {
+            let mkm = {
+              pic: response.pic == "_default_" ? avtar : response.pic,
+              gender: response.gender,
+            };
+            return mkm;
+          } else {
+            return false;
+          }
+        } else {
+          logout();
+        }
+      }
+
+      const press = (num) => {
+        playSound("beepPlayer");
+        if (navigator.vibrate) {
+          navigator.vibrate([300]);
+        }
+        const field = document.getElementById("field");
+        const number = field.value;
+        field.value = number + num;
+
+        displayGrid(["fieldCont"]);
+        document.getElementById("numPad").style.zIndex = "1000000000";
+        showSearchCont();
+        typingSrch({ target: { value: number + num } });
+      };
+      const erase = () => {
+        const field = document.getElementById("field");
+        const number = field.value;
+        const newNumber = number.slice(
+          0,
+          number.length == 0 ? 1 : number.length - 1
+        );
+
+        if (newNumber.length == 0) {
+          field.value = "";
+
+          displayNone(["fieldCont"]);
+          document.getElementById("numPad").style.zIndex = "0";
+          hideSearchCont();
+        } else {
+          field.value = newNumber;
+          typingSrch({ target: { value: newNumber } });
+        }
+      };
+      const hideNumPad = () => {
+        displayNone(["numPad"]);
+      };
+
+      function VideoCallFromNumber() {
+        const num = document.getElementById("field").value;
+        if (num.length < 10) return;
+        hideNumPad();
+        makeCall(num);
+      }
+      function AudioCallFromNumber() {
+        const num = document.getElementById("field").value;
+        if (num.length < 10) return;
+        hideNumPad();
+        makeAudioCall(num);
+      }
+      function takeTo(firstLetter) {
+        console.log(firstLetter);
+        if (alphaMap.includes(firstLetter)) {
+          const ele = document.getElementById(`cont_${firstLetter}`);
+
+          ele.scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+            inline: "center",
+          });
+        }
+      }
+
+      var initialMouse = 0;
+      var slideMovementTotal = 0;
+      var mouseIsDown = false;
+      var slider = $("#slider");
+
+      slider.on("mousedown touchstart", function (event) {
+        mouseIsDown = true;
+        slideMovementTotal =
+          $("#button-background").width() -
+          $("#button-background").width() / 2 -
+          30;
+        initialMouse = event.clientX || event.originalEvent.touches[0].pageX;
+      });
+
+      $(document.body, "#slider").on("mouseup touchend", function (event) {
+        if (!mouseIsDown) return;
+        mouseIsDown = false;
+        var currentMouse = event.clientX || event.changedTouches[0].pageX;
+        var relativeMouse = currentMouse - initialMouse;
+
+        if (relativeMouse < slideMovementTotal) {
+          $(".slide-text").fadeTo(300, 1);
+          slider.animate(
+            {
+              left: "8px",
+            },
+            300
+          );
+          return;
+        }
+
+        slider.addClass("unlocked");
+        $("#locker").text("");
+        $(".slide-text").fadeTo(300, 0);
+        $("#slider").text("Call Accepted");
+        setTimeout(() => {
+          accept();
+        }, 1000);
+      });
+
+      $(document.body).on("mousemove touchmove", function (event) {
+        if (!mouseIsDown) return;
+
+        var currentMouse =
+          event.clientX || event.originalEvent.touches[0].pageX;
+        var relativeMouse = currentMouse - initialMouse;
+        var slidePercent = 1 - relativeMouse / slideMovementTotal;
+
+        $(".slide-text").fadeTo(0, slidePercent);
+
+        if (relativeMouse <= 0) {
+          slider.css({ left: "-10px" });
+          return;
+        }
+        if (relativeMouse >= slideMovementTotal + 10) {
+          slider.css({ left: slideMovementTotal + "px" });
+          return;
+        }
+        slider.css({ left: relativeMouse - 10 });
+      });
+
+      function showDel(id, del) {
+        document.getElementById("delBut").style.backgroundColor = "red";
+        displayBlock(["delCon"]);
+        if (del == "d") {
+          document.getElementById("xp").innerText = "Delete this contact?";
+          document.getElementById("delBut").innerText = "Delete";
+          document
+            .getElementById("delBut")
+            .setAttribute("onclick", `deleteContact('${id}'); hideDel();`);
+        }
+        if (del == "b") {
+          document.getElementById("xp").innerText = "Block this contact?";
+          document.getElementById("delBut").innerText = "Block";
+
+          document
+            .getElementById("delBut")
+            .setAttribute("onclick", `blockContact('${id}'); hideDel();`);
+        }
+        if (del == "u") {
+          document.getElementById("xp").innerText = "Unblock this contact?";
+          document.getElementById("delBut").style.backgroundColor = "#1578dd";
+          document.getElementById("delBut").innerText = "Unblock";
+
+          document
+            .getElementById("delBut")
+            .setAttribute("onclick", `unBlockContact('${id}'); hideDel();`);
+        }
+        if (del == "s") {
+          document.getElementById("xp").innerText =
+            "This contact is not using CoMeet";
+          document.getElementById("delBut").innerText = "Invite";
+          document.getElementById("delBut").style.backgroundColor = "#1578dd";
+
+          document
+            .getElementById("delBut")
+            .setAttribute("onclick", `shareApp(); hideDel();`);
+        }
+        if (del == "c") {
+          document.getElementById("xp").innerText =
+            "Do you want to clear call logs?";
+          document.getElementById("delBut").innerText = "Clear";
+          document.getElementById("delBut").style.backgroundColor = "#1578dd";
+
+          document
+            .getElementById("delBut")
+            .setAttribute("onclick", `clearCallLogs(); hideDel();`);
+        }
+        if (del == "da") {
+          document.getElementById("xp").innerText =
+            "Delete this account permanently?";
+          document.getElementById("delBut").innerText = "Yes, delete";
+
+          document
+            .getElementById("delBut")
+            .setAttribute("onclick", `deleteAccount(); hideDel();`);
+        }
+      }
+      function hideDel() {
+        displayNone(["delCon"]);
+      }
+      const blockContact = async (contact) => {
+        let number = trimNum(contact);
+
+        displayNone(["blocker"]);
+        displayInlineGrid(["unblocker"]);
+        const data = {
+          num: localStorage.getItem("sim"),
+          block: number,
+          SESSION: localStorage.getItem("SESSION"),
+        };
+
+        const url = "https://comradeeco.pythonanywhere.com/comeet/addToBlock";
+        const response = await fetchApi(url, data);
+        let currentBlocked = JSON.parse(localStorage.blocked);
+        currentBlocked.push(number);
+        localStorage.setItem("blocked", JSON.stringify(currentBlocked));
+      };
+      const unBlockContact = async (contact) => {
+        let number = trimNum(contact);
+        displayNone(["unblocker"]);
+        displayInlineGrid(["blocker"]);
+        const data = {
+          num: localStorage.getItem("sim"),
+          unblock: number,
+          SESSION: localStorage.getItem("SESSION"),
+        };
+
+        const url =
+          "https://comradeeco.pythonanywhere.com/comeet/removeFromBlock";
+        const response = await fetchApi(url, data);
+
+        let currentBlocked = JSON.parse(localStorage.blocked);
+        currentBlocked.splice(currentBlocked.indexOf(number), 1);
+        localStorage.setItem("blocked", JSON.stringify(currentBlocked));
+
+        makeBlockList();
+      };
+
+      //playThis("kuniEyt3Qks")
+      //   document.addEventListener('visibilitychange', () => {
+      //         if (document.visibilityState === 'visible') {
+      //             console.log('Window is active');
+      //         } else {
+      //             console.log('Window is blurred');
+      //            if(status == true){
+      //              enterPip();
+      //            }
+
+      //         }
+      //     });
+
+      function startTrnaslate() {
+        /* audioTrack.enabled = false; */
+        startRecognition("hi-IN", "en");
+      }
+
+      function showCallModal() {
+        changePip("true");
+        $("#video_call").modal("show");
+      }
+
+      function managePip() {
+        const thresHeight = document.body.clientHeight;
+        const thresWidth = document.body.clientWidth;
+        if (thresHeight > 500 && thresWidth > 300) {
+          displayBlock(["dr"]);
+          displayGrid(["reactInfo"]);
+        } else {
+          displayNone(["reactInfo", "dr"]);
+          document.getElementById("vidOpt").classList.add("vidOptHide");
+          document.getElementById("navTop").classList.add("vidOptHide");
+        }
+      }
+      window.addEventListener("resize", () => {
+        managePip();
+      });
+      document.addEventListener("DOMContentLoaded", () => {
+        getStk("emoji");
+        getUserData();
+        setContacts();
+        showStatusBar();
+        checkNoti();
+        changePip("false");
+        if (localStorage?.permit) {
+          displayNone(["permit"]);
+        }
+      });
+      window.attendCall = attendCall;
+      window.declinedCall = declinedCall;
+
+      async function getUserMediaStream() {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({
+            audio: true,
+          });
+          return stream;
+        } catch (error) {
+          console.error("Error accessing microphone:", error);
+          return null;
+        }
+      }
+
+      async function startTranslation(fromLang, toLang) {
+        speechConfig.speechRecognitionLanguage = fromLang;
+        speechConfig.addTargetLanguage(toLang);
+
+        const stream = await getUserMediaStream();
+        if (!stream) {
+          console.error("Failed to get user media stream");
+          return;
+        }
+
+        const audioConfig = SpeechSDK.AudioConfig.fromStreamInput(stream);
+        translator = new SpeechSDK.TranslationRecognizer(
+          speechConfig,
+          audioConfig
+        );
+
+        // translator.recognizing = (s, e) => {
+        //   console.log(`Recognizing: ${e.result.text}`);
+        // };
+
+        translator.recognized = (s, e) => {
+          if (e.result.reason === SpeechSDK.ResultReason.TranslatedSpeech) {
+            console.log(`Recognized: ${e.result.text}`);
+            console.log(`Translation: ${e.result.translations.get(toLang)}`);
+            let translation = e.result.translations.get(toLang);
+            //transfer to asker
+            let r = {
+              username: username,
+              callId: callId,
+              callStatus: "TR",
+              text: translation,
+            };
+            channel.publish(channelName, r);
+          }
+        };
+
+        translator.canceled = (s, e) => {
+          console.error(`Canceled: ${e.reason}`);
+        };
+
+        translator.sessionStarted = (s, e) => {
+          console.log("Session started");
+        };
+
+        translator.sessionStopped = (s, e) => {
+          console.log("Session stopped");
+        };
+
+        translator.startContinuousRecognitionAsync();
+      }
+
+      async function speak(text) {
+        const audioConfig = SpeechSDK.AudioConfig.fromDefaultSpeakerOutput();
+        speechConfig.speechSynthesisVoiceName = speaker.ShortName;
+
+        const synthesizer = new SpeechSDK.SpeechSynthesizer(
+          speechConfig,
+          audioConfig
+        );
+
+        synthesizer.speakTextAsync(
+          text,
+          function (result) {
+            if (
+              result.reason ===
+              SpeechSDK.ResultReason.SynthesizingAudioCompleted
+            ) {
+            } else {
+              console.error(
+                "Speech synthesis canceled, " +
+                  result.errorDetails +
+                  "\nDid you set the speech resource key and region values?"
+              );
+            }
+            synthesizer.close();
+          },
+          function (err) {
+            console.trace("err - " + err);
+            synthesizer.close();
+          }
+        );
+      }
+      document.getElementById("srchLang").addEventListener("input", (event) => {
+        const value = event.target.value;
+        if (value.length > 0) {
+          showLang(value);
+        }
+      });
+      async function showLang(start) {
+        if (speaker) return;
+        $(".langChip").remove();
+        const languages = await getLang(true);
+        languages.forEach((item) => {
+          var ln = `${item.LocaleName.split(" ")[0]} (${item.DisplayName})`;
+          if (!ln.startsWith(start)) return;
+          var cf = item.Locale.split("-")[1].toLowerCase();
+          var inHtml = `
+              <div class="langChip" onclick="setSpeaker(${languages.indexOf(
+                item
+              )})">
+
+                    <img src="https://flagcdn.com/w80/${cf}.png" alt="" />
+                    <p>${ln}</p>
+                  </div>
+            `;
+          $("#langCont").append(inHtml);
+        });
+      }
+
+      async function displayLang(event) {
+        $(".langChip2").remove();
+
+        const languages = await getLang(false);
+        const query = event.target.value;
+        if (query.length == 0) return;
+        let already = [];
+        languages.forEach((lang) => {
+          let lName = lang.LocaleName.split(" ")[0];
+          if (lName.startsWith(query) && !already.includes(lang.Locale)) {
+            var cf = lang.Locale.split("-")[1].toLowerCase();
+            var inHtml = `
+              <div class="langChip2" onclick="setLang('${languages.indexOf(
+                lang
+              )}')">
+
+                    <img src="https://flagcdn.com/w80/${cf}.png" alt="" />
+                    <p>${lName}</p>
+                  </div>
+            `;
+
+            already.push(lang.Locale);
+            $("#natLangCont").append(inHtml);
+          }
+        });
+        console.log(already);
+      }
+
+      function setSpeaker(index) {
+        $(".langChip").remove();
+        speaker = filterLang[index];
+        var cf = speaker.Locale.split("-")[1].toLowerCase();
+        var ln = `${speaker.LocaleName.split(" ")[0]} (${speaker.DisplayName})`;
+        var inHtml = `
+        <div class="langChip" style="
+            width: 95vw;
+            background-color: white;
+            grid-template-columns:30px auto 30px;
+            
+        ">
+            <img src="https://flagcdn.com/w80/${cf}.png" alt="">
+            <p style="
+                color: black;
+                font-weight: bold; text-align:left;">${ln}</p>
+
+                <i class="material-symbols-rounded jk" style="color: black" onclick="resetSpeaker()">
+                  close
+                </i>
+          </div>
+        `;
+        $("#langCont").append(inHtml);
+      }
+      function resetSpeaker() {
+        $(".langChip").remove();
+        speaker = "";
+        showLang(document.getElementById("srchLang").value);
+      }
+      function resetLang() {
+        $(".langChip2").remove();
+        myLang = "";
+        displayLang(document.getElementById("disLang").value);
+      }
+      let filterLang = [];
+      let requested = false;
+      async function getLang(gender) {
+        if (requested) return filterLang;
+        requested = true;
+        const req = await fetch(
+          "https://westus.tts.speech.microsoft.com/cognitiveservices/voices/list",
+          {
+            method: "GET",
+            headers: { "Ocp-Apim-Subscription-Key": subscriptionKey },
+          }
+        );
+        const langs = await req.json();
+        if (gender) {
+          langs.forEach((lang) => {
+            if (reciGen == "Others") {
+              filterLang.push(lang);
+            }
+            if (lang.Gender == reciGen) {
+              filterLang.push(lang);
+            }
+          });
+        } else {
+          filterLang = langs;
+        }
+
+        return filterLang;
+      }
+
+      function showLanguage() {
+        displayBlock(["lang"]);
+        document.getElementById("rt").innerText = `Hi ${name}`;
+      }
+      function hideLanguage() {
+        displayNone(["lang"]);
+      }
+      function askTranslate() {
+        if (!speaker) return;
+        let r = {
+          username: username,
+          callId: callId,
+          callStatus: "T",
+          lang: speaker.Locale.split("-")[0],
+          status: true,
+        };
+        channel.publish(channelName, r);
+        hideLanguage();
+        setPlayoutDelayHint(5);
+        document.getElementById("localVideo").muted = true;
+        document.getElementById("trans").style.animation =
+          "backG 60s infinite linear";
+        document
+          .getElementById("trans")
+          .setAttribute("onclick", "showEndWarn()");
+        showInitialPage("Initializing AI Translation");
+      }
+
+      function endTranslator() {
+        hideEndWarn();
+        let r = {
+          username: username,
+          callId: callId,
+          callStatus: "T",
+          status: false,
+        };
+        channel.publish(channelName, r);
+        setPlayoutDelayHint(0);
+        document.getElementById("localVideo").muted = false;
+        document
+          .getElementById("trans")
+          .setAttribute("onclick", "showLanguage()");
+        document.getElementById("trans").style.animation = "none";
+        showInitialPage("Ending AI Translation");
+        resetSpeaker();
+      }
+      function setGender(gen) {
+        gender = gen;
+        let elements = document.getElementsByClassName("g");
+        for (element of elements) {
+          element.classList.remove("activeGender");
+        }
+        document.getElementById(gen).classList.add("activeGender");
+      }
+      function setLang(index) {
+        $(".langChip2").remove();
+        let item = filterLang[index];
+        myLang = item.Locale;
+        var cf = item.Locale.split("-")[1].toLowerCase();
+        var ln = `${item.LocaleName.split(" ")[0]}`;
+        var inHtml = `
+        <div class="langChip2" style="
+            width: 95vw;
+            background-color: wheat;
+            grid-template-columns:30px auto 30px;
+            
+        ">
+            <img src="https://flagcdn.com/w80/${cf}.png" alt="">
+            <p style="
+                color: black;
+                font-weight: bold; text-align:left;">${ln}</p>
+
+                <i class="material-symbols-rounded jk" style="color: black" onclick="resetLang()">
+                  close
+                </i>
+          </div>
+        `;
+        $("#natLangCont").append(inHtml);
+      }
+
+      async function saveSettings() {
+        if (gender && myLang) {
+          const data = {
+            SESSION: SESSION,
+            num: SIM,
+            gender: gender,
+            language: myLang,
+          };
+          const url = "https://comradeeco.pythonanywhere.com/comeet/saveAiData";
+          const response = await fetchApi(url, data);
+          displayNone(["nativeLang"]);
+        }
+      }
+
+      function showInitialPage(msg) {
+        displayGrid(["aiReady"]);
+        document.getElementById("msgHld").innerText = msg;
+
+        setTimeout(() => {
+          displayNone(["aiReady"]);
+        }, 5000);
+      }
+
+      function showEndWarn() {
+        toggleNav();
+        displayGrid(["aiEnd"]);
+      }
+      function hideEndWarn() {
+        toggleNav();
+        displayNone(["aiEnd"]);
+      }
+      function showSettings() {
+        displayBlock(["setCont"]);
+        document.getElementById("sSound").innerText = "OFF";
+        if (localStorage?.sounds) return;
+        document.getElementById("sSound").innerText = "ON";
+      }
+
+      function showBlockList() {
+        displayBlock(["bCont"]);
+        makeBlockList();
+      }
+      function makeBlockList() {
+        $(".bContact").remove();
+        const blockList = JSON.parse(localStorage.blocked);
+        displayBlock(["emptyBlock"]);
+        if (blockList.length == 0) return;
+        displayNone(["emptyBlock"]);
+        blockList.forEach((contact) => {
+          var bCon = createDiv({
+            classList: ["bContact"],
+            click: `showDel('${contact}','u'); showBlockList();`,
+          });
+          bCon.appendChild(
+            createPara({ style: "font-size: 20px;", text: queryName(contact) })
+          );
+          bCon.appendChild(
+            createSpan({ text: "Blocked Audio and Video Call" })
+          );
+          appendChild("bCont", bCon);
+          /* var inHtml = `
+          <div class="bContact" onclick="showDel('${contact}','u'); showBlockList();">
+        <p style="font-size: 20px;">${queryName(contact)}</p>
+        <span>Blocked Audio and Video Call</span>
+      </div>
+          `;
+          $("#bCont").append(inHtml); */
+        });
+      }
+
+      function setSound() {
+        if (localStorage.sounds) {
+          localStorage.removeItem("sounds");
+          document.getElementById("sSound").innerText = "ON";
+        } else {
+          localStorage.setItem("sounds", "off");
+          document.getElementById("sSound").innerText = "OFF";
+        }
+      }
+      function playSound(id) {
+        if (localStorage?.sounds) return;
+        document.getElementById(id).play();
+      }
+      async function deleteAccount() {
+        const data = {
+          SESSION: SESSION,
+          num: SIM,
+        };
+        const url =
+          "https://comradeeco.pythonanywhere.com/comeet/deleteAccount";
+        const response = await fetchApi(url, data);
+        logout();
+      }
+    </script>
+    <script type="module" src="./js/index.js"></script>
+  </body>
+</html>

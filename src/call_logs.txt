@@ -1,0 +1,66 @@
+When app is open:
+
+Outgoing call
+1: Dialed a call and it's connect then user disconnect the call ( save the logs saying duration and time with outgoing status)
+// implementation is on decline button when call is accepted and the websocket when received the end signal
+
+2: Dialed a call and user declined the call ( save the logs saying could'nt connect the call with outgoing status)
+// implementation is on push notification 
+
+Incoming call
+3: Recieved a call and answered it then disconnect the call ( save logs saying duration and time with outgoing status)
+4: Recieved a call and declined it ( save the logs saying Rejected call and time with incoming status )
+
+When app is closed:
+
+Icoming call:
+1: Recieved a call and declined ( save call logs saying rejected incoming call and time with incoming status)
+2: Does not received the call while ringing ( save call logs saying missed call and time with incoming status )
+3: Call aborted ( Save call logs saying missed call and time with incoming status)
+
+
+Data structure:
+
+{
+    "9696278019":[
+        {"time_stamp":"ISO_Time","type":"incoming","mode":"video","status":"connect","duration":"09:43"},
+        {"time_stamp":"ISO_Time","type":"incoming","mode":"video","status":"not connect"},
+        {"time_stamp":"ISO_Time","type":"outgoing","mode":"video","status":"not connect"},
+        {"time_stamp":"ISO_Time","type":"incoming","mode":"video","status":"missed"},
+    ]
+}
+
+let time_stamp,
+        _mode,
+        _duration,
+        incoming = true,
+        _status;
+
+
+/* 
+       status
+       0: missed
+       1: connect (true)
+       2: could'nt connect (false)
+       */
+
+
+
+
+
+(index)         Value
+
+
+time_stamp	    undefined
+incoming	    true
+mode	        undefined
+status	        undefined
+duration	    0
+
+
+
+{
+"8115177409":{"8167":{"time_stamp":"2024-08-07T06:49:48.519Z","incoming":true,"mode":"video","status":"1","duration":29},"90375":{"time_stamp":"2024-08-07T06:47:57.247Z","incoming":true,"mode":"video","status":"0","duration":0}},
+"1234567890":{"8167":{"time_stamp":"2024-08-07T08:01:56.311Z","incoming":true,"mode":"video","status":"1","duration":29},"90375":{"time_stamp":"2024-08-07T06:47:57.247Z","incoming":true,"mode":"video","status":"0","duration":0}},
+"0987654321":{"8167":{"time_stamp":"2024-08-07T09:15:36.212Z","incoming":true,"mode":"video","status":"1","duration":29},"90375":{"time_stamp":"2024-08-07T06:47:57.247Z","incoming":true,"mode":"video","status":"0","duration":0}}
+}
