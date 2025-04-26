@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="https://github.com/mahesh548/CoMeet/blob/main/src/assets/imgs/logo.png?raw=true" alt="CoMeet Logo" width="150"/>
+</div>
+
 # CoMeet - Peer-to-Peer Audio/Video Calling App
 
 CoMeet is a high-quality, feature-rich, peer-to-peer audio and video calling application designed for seamless communication between users. With the added bonus of interactive stickers, real-time language translation, and excellent video quality, CoMeet is the go-to app for staying connected with friends, family, and colleagues.
