@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/mahesh548/CoMeet/blob/main/src/assets/imgs/logo.png?raw=true" alt="CoMeet Logo" width="150"/>
+  <img src="https://github.com/mahesh548/CoMeet/blob/main/src/assets/imgs/logo_app.png?raw=true" width="150"/>
 </div>
 
 # CoMeet - Peer-to-Peer Audio/Video Calling App
