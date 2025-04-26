@@ -67,14 +67,14 @@ CoMeet is a high-quality, feature-rich, peer-to-peer audio and video calling app
 
 ## Screenshots
 
-![CoMeet - Home Screen](https://github.com/mahesh548/CoMeet/blob/main/playstore/Graphics/Phone/1.png?raw=true)
-_Sync contacs for easy access and instant calls_
+<img src="https://github.com/mahesh548/CoMeet/blob/main/playstore/Graphics/Phone/1.png?raw=true" alt="CoMeet - Home Screen" width="500"/>
+*Sync contacts for easy access and instant calls*
 
-![CoMeet - Video Call](https://github.com/mahesh548/CoMeet/blob/main/playstore/Graphics/Phone/4.png?raw=true)
-_Break language barriers on call with live translation_
+<img src="https://github.com/mahesh548/CoMeet/blob/main/playstore/Graphics/Phone/4.png?raw=true" alt="CoMeet - Video Call" width="500"/>
+*Break language barriers on call with live translation*
 
-![CoMeet - Video Call](https://github.com/mahesh548/CoMeet/blob/main/playstore/Graphics/Phone/3.png?raw=true)
-_Add some fun to your call with some playful stickers_
+<img src="https://github.com/mahesh548/CoMeet/blob/main/playstore/Graphics/Phone/3.png?raw=true" alt="CoMeet - Video Call" width="500"/>
+*Add some fun to your call with playful stickers*
 
 ## Contributing
 
