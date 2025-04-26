@@ -65,6 +65,24 @@ CoMeet is a high-quality, feature-rich, peer-to-peer audio and video calling app
 
    This will open the project in Android Studio. You can now build and run the app on an Android emulator or a physical device.
 
+## Get the App
+
+<div align="center">
+  <a href="https://play.google.com/store/apps/details?id=com.call.comrade" target="_blank">
+    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" width="200"/>
+  </a>
+</div>
+
+<br/>
+
+<div align="center">
+
+> 🛠️ **Note:**  
+> CoMeet is currently in **Closed Testing**.  
+> The app will be **publicly available soon** on the Play Store. Stay tuned!
+
+</div>
+
 ## Screenshots
 
 <img src="https://github.com/mahesh548/CoMeet/blob/main/playstore/Graphics/Phone/1.png?raw=true" alt="CoMeet - Home Screen" width="200"/>
@@ -82,4 +100,4 @@ Feel free to fork this repository, submit issues, and create pull requests. Cont
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/mahesh548/CoMeet/blob/28f19dfd45a2cf32bf3a01c00579b3f522a920b0/LICENSE) file for details.
