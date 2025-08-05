@@ -6,3 +6,5 @@ node_modules/
 .sourcemaps
 dist/
 backend/
+src/call_logs.txt
+TODO.txt
