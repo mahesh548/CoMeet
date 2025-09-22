@@ -21,7 +21,7 @@ async function shareContact(name, contact) {
 
 async function shareApp() {
   const text =
-    "Hey! Check out CoMeet! It’s a fantastic way to make secure video and audio calls. You can even send funny stickers during your calls and enjoy live translation in any language. Get it now at https://google.com.";
+    "Hey! Check out CoMeet! It’s a fantastic way to make secure video and audio calls. You can even send funny stickers during your calls and enjoy live translation in any language. Get it now at https://comeet.datanation.in";
   await Share.share({
     text: text,
   });
