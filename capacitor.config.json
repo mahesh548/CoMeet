@@ -5,9 +5,14 @@
   "plugins": {
     "SplashScreen": {
       "launchShowDuration": 0
+    },
+    "FirebaseAuthentication": {
+      "authDomain": null,
+      "skipNativeAuth": false,
+      "providers": ["phone"]
     }
   },
-    "server": {
+  "server": {
     "hostname": "localhost",
     "iosScheme": "https",
     "androidScheme": "https"

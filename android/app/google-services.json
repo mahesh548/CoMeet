@@ -1,26 +1,37 @@
 {
   "project_info": {
-    "project_number": "477680010626",
-    "project_id": "test-notification-bcacc",
-    "storage_bucket": "test-notification-bcacc.appspot.com"
+    "project_number": "1057839472656",
+    "firebase_url": "https://comrade-393912-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "comrade-393912",
+    "storage_bucket": "comrade-393912.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:477680010626:android:2647c7475bb28d2d873b9b",
+        "mobilesdk_app_id": "1:1057839472656:android:289eac997c5c9ff9feea95",
         "android_client_info": {
           "package_name": "com.call.comrade"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1057839472656-66798ta19aemm2n69186l0o2g4ljjtmi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyBWPTKWdROCZqva7l-2y7l7yAcb5jqt6IE"
+          "current_key": "AIzaSyD2SP-MeW3DiNzdKTzBRGnlNfVs0ofKBCg"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1057839472656-66798ta19aemm2n69186l0o2g4ljjtmi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

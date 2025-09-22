@@ -1143,10 +1143,11 @@ hr {
 .langWrap {
   display: grid;
   height: 100%;
-  grid-template-rows: max-content max-content max-content;
+  grid-template-rows: max-content auto;
   width: 100%;
   margin: auto;
   row-gap: 20px;
+  padding-top: 10px;
 }
 .yuk {
   color: white;
@@ -1186,8 +1187,13 @@ hr {
 }
 .langCont {
   display: block;
-  height: 50px;
-  width: max-content;
+  height: auto;
+  width: 100%;
+  padding: 5px;
+}
+.fromLangCont {
+  overflow-y: scroll;
+  padding-bottom: 100px;
 }
 .langMain {
   width: 100%;
@@ -1250,24 +1256,28 @@ hr {
   }
 }
 .langChip2 {
-  display: inline-grid;
-  grid-template-columns: 30px auto;
-  height: 40px;
+  display: grid;
+  grid-template-columns: 40px auto 30px;
+  /* height: 40px; */
   align-items: center;
-  background-color: #262626;
-  padding: 0px 10px;
+  background-color: #26262600;
+  padding: 5px 12px;
   border-radius: 12px;
   column-gap: 8px;
   padding-left: 5px;
   margin-left: 8px;
+  /* width: 100%; */
+  justify-items: start;
+  column-gap: 12px;
   img {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     border-radius: 8px;
   }
   p {
     margin-bottom: 0px;
     color: white;
+    text-align: left;
   }
 }
 .yut {
@@ -1634,8 +1644,8 @@ hr {
 }
 .gender {
   display: grid;
-  grid-template-columns: auto auto auto;
-  width: 95%;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
   column-gap: 10px;
   margin: auto;
   margin-top: 5px;
@@ -1643,9 +1653,9 @@ hr {
     border-radius: 9px;
     border: 0px;
     width: 100%;
-    font-size: 15px;
+    font-size: 12px;
     letter-spacing: normal;
-    height: 100px;
+    height: 70px;
     display: inline-grid;
     align-content: center;
     align-items: center;
@@ -1745,4 +1755,50 @@ hr {
   letter-spacing: 1px;
   font-weight: 400;
   margin-bottom: 40px;
+}
+
+/* pill translation */
+
+body {
+  margin: 0;
+  background-color: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: sans-serif;
+}
+
+.selector-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: #222;
+  border-radius: 999px;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  width: fit-content;
+}
+
+.pill {
+  padding: 0.5rem 1.5rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  background-color: #333;
+  color: #ccc;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.pill.active {
+  background-color: wheat;
+  color: #000;
+}
+
+.arrow {
+  color: #aaa;
+  font-size: 1.2rem;
+  user-select: none;
 }

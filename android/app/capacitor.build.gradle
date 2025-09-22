@@ -12,6 +12,7 @@ dependencies {
     implementation project(':anuradev-capacitor-contacts')
     implementation project(':anuradev-capacitor-phone-call-notification')
     implementation project(':capacitor-community-speech-recognition')
+    implementation project(':capacitor-firebase-authentication')
     implementation project(':capacitor-camera')
     implementation project(':capacitor-push-notifications')
     implementation project(':capacitor-share')

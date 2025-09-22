@@ -3,10 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
     <title>Document</title>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300..700&display=swap");
@@ -18,10 +31,9 @@
       }
       .cont {
         height: 100vh;
-        width: 100vw;
-        display: grid;
-        align-content: stretch;
-        justify-content: center;
+        width: 90vw;
+        margin: auto;
+        padding-top: 6rem;
       }
 
       .num {
@@ -33,7 +45,7 @@
         height: 70px;
         column-gap: 30px;
         margin-top: 20px;
-        background-color: #ffffff36;
+        background-color: #61616163;
         border: 0px;
         border-radius: 12px;
         padding: 0px 10px;
@@ -41,58 +53,283 @@
           margin: 0px;
           margin-bottom: 0px;
           text-align: left;
-          margin-top: 3px;
+          /* margin-top: 3px; */
+          font-size: 12px;
         }
-        b {
-          font-size: 18px;
-          text-align: left;
-        }
-        span:nth-child(1) {
+        svg:nth-child(1) {
           background-color: wheat;
           color: black;
-          height: 40px;
+          height: 50px;
+          width: 50px;
           aspect-ratio: 1/1;
           display: inline-grid;
           align-content: center;
           justify-content: center;
           border-radius: 12px;
-          padding: 3px;
+          padding: 12px;
         }
+      }
+
+      .otp {
+        background-color: transparent;
+        border: 0px;
+        height: 40px;
+        outline: none;
+        width: 98%;
+        border-radius: 12px;
+        margin-top: 15px;
+        padding: 5px;
+        color: white;
+        padding-left: 8px;
+        font-weight: bold;
+        margin-top: 0px;
+      }
+      .otp::placeholder {
+        color: #ffffff9e;
+        padding-left: 10px;
+        font-weight: bold;
+      }
+      .startBut {
+        background-color: wheat;
+        height: 50px;
+        border: 0px;
+        width: 100%;
+        font-weight: bold;
+        color: black;
+        border-radius: 40px;
+        font-size: 18px;
+        padding: 5px;
+        letter-spacing: 1px;
+        margin-top: 25px;
+      }
+      .numHolder {
+        /* height: 40px; */
+        display: grid;
+        grid-template-columns: 45px auto;
+        width: 100%;
+        border: 2px solid wheat;
+        align-items: center;
+        padding: 5px;
+        border-radius: 8px;
+      }
+      .inputTag {
+        background-color: black;
+        color: wheat;
+        font-size: 12px;
+        transform: translate(10%, -95%);
+        position: absolute;
+        /* left: 10px; */
       }
       .pageTag {
         color: wheat;
-        font-weight: bold;
         font-size: 18px;
         text-align: center;
+      }
+      .sep {
+        border-right: 2px solid #525252;
+        padding-right: 10px;
+      }
+      .tag {
+        margin: 0px;
+        margin-bottom: 0px;
+        font-size: 12px;
+        color: red;
+        text-align: left;
+        width: 100%;
+        margin-top: 3px;
+        display: none;
       }
     </style>
   </head>
   <body>
     <div class="cont">
-      <p class="pageTag">Choose Phone Number</p>
-      <div class="numCont" id="numCont">
-        <button class="num" id="sim1but">
-          <span class="material-symbols-outlined"> sim_card </span>
-          <div>
-            <b id="sim1b"></b>
-            <p id="sim1p"></p>
-          </div>
+      <p class="pageTag mb-0">Your phone number</p>
+      <p
+        class="m-0 text-white-50 text-center m-auto"
+        style="font-size: 14px; width: 60%"
+      >
+        Please enter your phone number to receive calls.
+      </p>
+      <div class="numCont mt-5" id="numCont">
+        <div class="numHolder position-relative">
+          <p class="inputTag px-2">Phone number</p>
+          <p class="text-white mb-0 ms-1 sep">+91</p>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            pattern="[0-9]{10}"
+            maxlength="10"
+            required
+            placeholder="00000 00000"
+            class="otp"
+          />
+        </div>
+        <p class="tag mt-2" id="phoneTag">Could not verify your phone!</p>
+        <button onclick="check_num()" class="startBut" id="startBut">
+          Continue
         </button>
-        <button class="num" id="sim2but">
-          <span class="material-symbols-outlined"> sim_card </span>
-          <div>
-            <b id="sim2b"></b>
-            <p id="sim2p"></p>
+        <div id="otpCont" style="display: none">
+          <div
+            class="numHolder position-relative mt-3"
+            style="grid-template-columns: auto"
+          >
+            <p class="inputTag px-2">Enter 6 digits OTP</p>
+            <input
+              type="tel"
+              id="phoneOtp"
+              pattern="[0-9]{6}"
+              maxlength="10"
+              required
+              placeholder="000 000"
+              class="otp"
+            />
           </div>
-        </button>
+          <p class="tag mt-2" id="otpTag">Invalid OTP!</p>
+          <button onclick="verifyOtp()" id="otpBut" class="startBut">
+            Verify
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIM MODAL -->
+    <div
+      class="modal fade"
+      id="simModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark">
+          <div class="modal-header" style="border: none">
+            <h5 class="modal-title text-light text-center m-auto">
+              Select Sim
+            </h5>
+          </div>
+          <div class="modal-body text-light">
+            <button
+              class="num m-auto"
+              id="sim1but"
+              onclick="autoFill(0)"
+              data-bs-dismiss="modal"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="#000000"
+              >
+                <path
+                  d="M280-200h80v-80h-80v80Zm0-160h80v-160h-80v160Zm160 160h80v-160h-80v160Zm0-240h80v-80h-80v80Zm160 240h80v-80h-80v80Zm0-160h80v-160h-80v160ZM240-80q-33 0-56.5-23.5T160-160v-480l240-240h320q33 0 56.5 23.5T800-800v640q0 33-23.5 56.5T720-80H240Zm0-80h480v-640H434L240-606v446Zm0 0h480-480Z"
+                />
+              </svg>
+              <div>
+                <p id="sim1b" style="font-size: 18px"></p>
+                <p id="sim1p" style="opacity: 0.7"></p>
+              </div>
+            </button>
+            <button
+              class="num m-auto mt-3"
+              id="sim2but"
+              onclick="autoFill(1)"
+              data-bs-dismiss="modal"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="#000000"
+              >
+                <path
+                  d="M280-200h80v-80h-80v80Zm0-160h80v-160h-80v160Zm160 160h80v-160h-80v160Zm0-240h80v-80h-80v80Zm160 240h80v-80h-80v80Zm0-160h80v-160h-80v160ZM240-80q-33 0-56.5-23.5T160-160v-480l240-240h320q33 0 56.5 23.5T800-800v640q0 33-23.5 56.5T720-80H240Zm0-80h480v-640H434L240-606v446Zm0 0h480-480Z"
+                />
+              </svg>
+              <div>
+                <p id="sim2b" style="font-size: 18px"></p>
+                <p id="sim2p" style="opacity: 0.7"></p>
+              </div>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
     <script type="module" src="./js/utils.js"></script>
     <script type="module">
       import { Sim } from "@jonz94/capacitor-sim";
+      import { FirebaseAuthentication } from "@capacitor-firebase/authentication";
+
+      function buttonLoading(id) {
+        const btn = document.getElementById(id);
+        btn.disabled = true;
+        btn.innerText = "Please wait...";
+      }
+      function buttonEnable(id, text) {
+        const btn = document.getElementById(id);
+        btn.disabled = false;
+        btn.innerText = text;
+      }
+
+      let verificationId;
+      async function verifyPhone(phoneNumber) {
+        FirebaseAuthentication.addListener("phoneCodeSent", async (result) => {
+          verificationId = result.verificationId;
+          document.getElementById("startBut").style.display = "none";
+          document.getElementById("otpCont").style.display = "block";
+        });
+        FirebaseAuthentication.addListener(
+          "phoneVerificationFailed",
+          async (result) => {
+            alert(result);
+            buttonEnable("startBut", "Continue");
+            document.getElementById("phone").removeAttribute("readonly");
+            document.getElementById("phoneTag").style.display = "block";
+          }
+        );
+
+        try {
+          const result = await FirebaseAuthentication.signInWithPhoneNumber({
+            phoneNumber: phoneNumber,
+          });
+        } catch (error) {
+          buttonEnable("startBut", "Continue");
+          document.getElementById("phone").removeAttribute("readonly");
+          document.getElementById("phoneTag").style.display = "block";
+          console.error("Error sending OTP:", error);
+        }
+      }
+
+      window.verifyOtp = async function () {
+        buttonLoading("otpBut");
+        document.getElementById("otpTag").style.display = "none";
+        const otp = document.getElementById("phoneOtp").value;
+        try {
+          await FirebaseAuthentication.confirmVerificationCode({
+            verificationId: verificationId,
+            verificationCode: otp,
+          });
+          const { token } = await FirebaseAuthentication.getIdToken();
+          localStorage.setItem("idToken", token);
+          window.location.href = "signup.html";
+        } catch (error) {
+          buttonEnable("otpBut", "Verify");
+          document.getElementById("otpTag").style.display = "block";
+          console.log("error verifying otp: ", error);
+        }
+      };
+
       async function getNum() {
         const { simCards } = await Sim.getSimCards();
 
+        function showModal() {
+          var myModal = new bootstrap.Modal(
+            document.getElementById("simModal")
+          );
+          myModal.show();
+        }
         if (simCards[0]) {
           let x = simCards[0]["number"];
           document.getElementById("sim1b").innerText = `+91 ${x.slice(
@@ -102,12 +339,7 @@
           document.getElementById(
             "sim1p"
           ).innerText = `${simCards[0]["carrierName"]} • Sim 1`;
-          document
-            .getElementById("sim1but")
-            .setAttribute(
-              "onclick",
-              `setNum(${x.slice(x.length - 10, x.length)})`
-            );
+
           document.getElementById("sim1but").style.display = "grid";
         } else {
           document.getElementById("sim1b").style.display = "none";
@@ -121,24 +353,34 @@
           document.getElementById(
             "sim2p"
           ).innerText = `${simCards[1]["carrierName"]} • Sim 2`;
-          document
-            .getElementById("sim2but")
-            .setAttribute(
-              "onclick",
-              `setNum(${y.slice(x.length - 10, x.length)})`
-            );
+
           document.getElementById("sim1but").style.display = "grid";
         } else {
           document.getElementById("sim2b").style.display = "none";
         }
+        if (simCards[1] || simCards[0]) showModal();
       }
       getNum();
-      async function setNum(num) {
-        await localStorage.setItem("sim", num);
-        check_num(num);
+
+      function parseNumber(num) {
+        return num.slice(num.length - 10, num.length);
       }
 
-      async function check_num(num) {
+      window.autoFill = async function autoFill(index) {
+        const { simCards } = await Sim.getSimCards();
+        const num = parseNumber(simCards[index]["number"]);
+        if (num.length != 10) return;
+        document.getElementById("phone").value = num;
+        check_num();
+      };
+
+      async function check_num() {
+        const num = parseNumber(document.getElementById("phone").value);
+        if (num.length != 10) return;
+        buttonLoading("startBut");
+        document.getElementById("phoneTag").style.display = "none";
+        document.getElementById("phone").setAttribute("readonly", true);
+        await localStorage.setItem("sim", num);
         const data = {
           phoneNumber: num,
         };
@@ -147,11 +389,11 @@
         if (response.status) {
           window.location.href = "verify.html";
         } else {
-          window.location.href = "signup.html";
+          verifyPhone("+91" + num);
         }
       }
 
-      window.setNum = setNum;
+      window.check_num = check_num;
     </script>
   </body>
 </html>

@@ -96,6 +96,17 @@
     </div>
     <script type="module" src="./js/utils.js"></script>
     <script>
+      function buttonLoading(id) {
+        const btn = document.getElementById(id);
+        btn.disabled = true;
+        btn.innerText = "Please wait...";
+      }
+      function buttonEnable(id, text) {
+        const btn = document.getElementById(id);
+        btn.disabled = false;
+        btn.innerText = text;
+      }
+
       document.getElementById("login").addEventListener("click", () => {
         const otp = document.getElementById("otp").value;
         if (otp.length == 4) {
@@ -107,15 +118,19 @@
       });
 
       async function verify(otp) {
+        buttonLoading("login");
         const phoneNumber = localStorage.getItem("sim");
         var data = {};
         if (localStorage.getItem("temp_data")) {
           const temp_data = JSON.parse(localStorage.getItem("temp_data"));
+          const idToken = localStorage.getItem("idToken");
           data = {
             num: phoneNumber,
             OTP: otp,
             name: temp_data.name,
             email: temp_data.email,
+            gender: temp_data.gender,
+            idToken: idToken,
             pic: "_default_",
           };
         } else {
@@ -133,9 +148,11 @@
         if (response.status) {
           await localStorage.setItem("SESSION", response.SESSION);
           await localStorage.removeItem("temp_data");
+          await localStorage.removeItem("idToken");
           window.location.href = "dialer.html";
         } else {
           document.getElementById("otpTag").style.display = "block";
+          buttonEnable("login", "login");
         }
       }
 

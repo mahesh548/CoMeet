@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <title>Document</title>
     <link rel="stylesheet" href="./css/signup.css" />
+    <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
     <div class="cont">
@@ -33,7 +34,22 @@
           placeholder="Enter Your Email Adress"
         />
         <p class="tag" id="emailTag">Invalid Email</p>
-
+        <div class="gender">
+          <button id="Male" class="g" onclick="setGender('Male')">
+            <span class="material-symbols-outlined"> face </span>Male
+          </button>
+          <button id="Female" class="g" onclick="setGender('Female')">
+            <span
+              class="material-symbols-outlined"
+              style="transform: translateY(-3px)"
+            >
+              face_4 </span
+            >Female
+          </button>
+          <button id="Others" class="g" onclick="setGender('Others')">
+            <span class="material-symbols-outlined">account_circle</span>Others
+          </button>
+        </div>
         <button onclick="signUP()">Continue</button>
       </div>
       <div class="footer">
@@ -46,6 +62,7 @@
     </div>
     <script type="module" src="./js/utils.js"></script>
     <script>
+      var gender;
       const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
       async function validateEmail(email) {
         var result = emailRegex.test(email);
@@ -90,16 +107,25 @@
         var name = document.getElementById("name").value;
         var email = document.getElementById("email").value;
         const checkEmail = validateEmail(email);
-        if (validateName(name) && checkEmail) {
+        if (validateName(name) && checkEmail && gender) {
           console.log(email);
           console.log(name);
           const mkm = {
             email: email,
             name: name,
+            gender: gender,
           };
           localStorage.setItem("temp_data", JSON.stringify(mkm));
           window.location.href = "verify.html";
         }
+      }
+      function setGender(gen) {
+        gender = gen;
+        let elements = document.getElementsByClassName("g");
+        for (element of elements) {
+          element.classList.remove("activeGender");
+        }
+        document.getElementById(gen).classList.add("activeGender");
       }
     </script>
   </body>

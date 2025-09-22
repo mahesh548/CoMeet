@@ -842,18 +842,7 @@
             <!-- Language -->
             <div class="lang" id="lang">
               <div class="langWrap">
-                <img
-                  src="./assets/imgs/bg.png"
-                  alt=""
-                  style="
-                    width: 100%;
-                    height: 250px;
-                    object-fit: cover;
-                    /* filter: blur(5px); */
-                    /* aspect-ratio: 1/1; */
-                  "
-                />
-                <button class="clLang" onclick="hideLanguage()">
+                <button class="clLang mt-3" onclick="hideLanguage()">
                   <span
                     class="material-symbols-outlined"
                     style="color: white; font-weight: 500; font-size: 30px"
@@ -861,30 +850,52 @@
                     arrow_back
                   </span>
                 </button>
-                <p
-                  style="
-                    margin-bottom: 0px;
-                    color: white;
-                    font-size: 30px;
-                    position: absolute;
-                    top: 200px;
-                    margin-left: 10px;
-                  "
-                  id="rt"
-                ></p>
-                <p class="zxl">
-                  Feeling lost in translation? Choose your language and let us
-                  do the magic!
-                </p>
-                <div style="text-align: center; margin-top: 10px">
+                <div class="selector-container mt-2 mx-auto">
+                  <button class="pill active" id="fromLanguage">From</button>
+                  <span class="arrow">→</span>
+                  <button class="pill" id="toLanguage">To</button>
+                </div>
+                <div
+                  id="fromLangCont"
+                  style="display: block"
+                  class="fromLangCont"
+                >
                   <div
                     class="searchBar"
                     style="
                       width: 95%;
-                      border-radius: 8px;
-                      background-color: #262626;
+                      border-radius: 40px;
+                      background-color: #222;
                       height: 50px;
-                      border: 2px solid #ffffff1c;
+                      margin-bottom: 30px;
+                    "
+                  >
+                    <span
+                      class="material-symbols-outlined"
+                      style="color: #727272"
+                    >
+                      search
+                    </span>
+                    <input
+                      type="text"
+                      name=""
+                      class="searchInput"
+                      placeholder="Language other person speaking?"
+                      id="disLang"
+                      oninput="displayLang(event)"
+                    />
+                  </div>
+
+                  <div class="langCont" id="natLangCont"></div>
+                </div>
+                <div id="toLangCont" style="display: none" class="fromLangCont">
+                  <div
+                    class="searchBar"
+                    style="
+                      width: 95%;
+                      border-radius: 40px;
+                      background-color: #222;
+                      height: 50px;
                       margin-bottom: 30px;
                     "
                   >
@@ -899,12 +910,11 @@
                       name=""
                       id="srchLang"
                       class="searchInput"
-                      placeholder="Search languages..."
+                      placeholder="Language you want to hear?"
                     />
                   </div>
-                  <div class="yut">
-                    <div class="langCont" id="langCont"></div>
-                  </div>
+
+                  <div class="langCont" id="langCont"></div>
                 </div>
               </div>
               <div
@@ -1130,67 +1140,6 @@
         </div>
       </div>
     </div>
-    <div class="nativeLang" id="nativeLang">
-      <p
-        style="
-          color: white;
-          width: 95%;
-          margin: auto;
-          font-size: 18px;
-          margin-top: 20px;
-          text-align: center;
-          font-family: 'Signika Negative';
-          letter-spacing: 1px;
-        "
-      >
-        Setup Translation AI
-      </p>
-      <p class="nativeLangTag">Select your gender</p>
-      <div class="gender">
-        <button id="Male" class="g" onclick="setGender('Male')">
-          <span class="material-symbols-outlined"> face </span>Male
-        </button>
-        <button id="Female" class="g" onclick="setGender('Female')">
-          <span
-            class="material-symbols-outlined"
-            style="transform: translateY(-3px)"
-          >
-            face_4 </span
-          >Female
-        </button>
-        <button id="Others" class="g" onclick="setGender('Others')">
-          <span class="material-symbols-outlined">account_circle</span>Others
-        </button>
-      </div>
-      <p class="nativeLangTag">Select a language you speak</p>
-      <div
-        class="searchBar"
-        style="
-          width: 95%;
-          border-radius: 8px;
-          background-color: #262626;
-          height: 50px;
-          border: 2px solid #ffffff1c;
-          margin-bottom: 15px;
-        "
-      >
-        <span class="material-symbols-outlined" style="color: #727272">
-          search
-        </span>
-        <input
-          type="text"
-          name=""
-          class="searchInput"
-          placeholder="Search languages..."
-          id="disLang"
-          oninput="displayLang(event)"
-        />
-      </div>
-      <div class="yut">
-        <div class="langCont" id="natLangCont"></div>
-      </div>
-      <button class="sBut" onclick="saveSettings()">Save Settings</button>
-    </div>
 
     <!-- Pop up starts here -->
     <div class="delCon" id="delCon" onclick="hideDel()">
@@ -1215,20 +1164,7 @@
         </span>
       </button>
       <p class="headLine">Call Settings</p>
-      <button class="setBut" onclick="displayBlock(['nativeLang'])">
-        <div>
-          Setup AI Translation
-          <br />
-          <span>Set your language and gender.</span>
-        </div>
 
-        <span
-          class="material-symbols-outlined"
-          style="color: grey; font-weight: 300; font-size: 20px"
-        >
-          arrow_forward_ios
-        </span>
-      </button>
       <button class="setBut" onclick="showBlockList()">
         <div>
           Blocklist
@@ -1404,7 +1340,7 @@
       let closedYT = true;
       let stopCounter = false;
       let clientId = parseInt(Math.random() * 1000000000).toString();
-      const apiKey = "AIzaSyAMqH8Wa1qg4AfEvHHHYXbZspjm1BjluTE";
+      const apiKey = "";
       const avtar = "https://comradeeco.pythonanywhere.com/static/avtar.png";
       let reciGen = "";
       let reciArray;
@@ -1425,14 +1361,61 @@
           : logout();
 
       const username = SIM;
-      const subscriptionKey = "9deef01144614bdb913f29e2f45f8b95";
+      let azureToken = null;
+      let tokenExpiry = 0; // timestamp in ms
+      let tokenRefreshInterval = null;
       const serviceRegion = "westus";
       let voice = "en-US-AvaMultilingualNeural";
 
-      const speechConfig = SpeechSDK.SpeechTranslationConfig.fromSubscription(
-        subscriptionKey,
-        serviceRegion
-      );
+      // Fetch a new token from backend
+      async function fetchAzureToken() {
+        try {
+          const payload = {
+            num: localStorage.getItem("sim"),
+            SESSION: localStorage.getItem("SESSION"),
+          };
+
+          const url = "https://comradeeco.pythonanywhere.com/getAzureToken";
+          const data = await fetchApi(url, payload);
+          azureToken = data.token;
+          const ttlMinutes = 10; // Azure token usually valid 10 min
+          tokenExpiry = Date.now() + ttlMinutes * 60 * 1000;
+          return azureToken;
+        } catch (err) {
+          console.error("Failed to get Azure token:", err);
+          throw err;
+        }
+      }
+
+      const fromBtn = document.getElementById("fromLanguage");
+      const toBtn = document.getElementById("toLanguage");
+
+      function setActive(btn) {
+        document
+          .querySelectorAll(".pill")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+      }
+
+      fromBtn.addEventListener("click", () => {
+        setActive(fromBtn);
+        displayBlock(["fromLangCont"]);
+        displayNone(["toLangCont"]);
+      });
+      toBtn.addEventListener("click", () => {
+        setActive(toBtn);
+        displayBlock(["toLangCont"]);
+        displayNone(["fromLangCont"]);
+      });
+
+      // Get token: return current valid one or fetch new
+      async function getAzureToken() {
+        if (!azureToken || Date.now() > tokenExpiry - 30 * 1000) {
+          // refresh 30s before expiry
+          return await fetchAzureToken();
+        }
+        return azureToken;
+      }
       function displayBlock(array) {
         array.forEach((id) => {
           document.getElementById(id).style.display = "block";
@@ -1549,12 +1532,8 @@
         if (response.status) {
           name = response.name;
           gender = response.gender;
-          myLang = response.language;
           pic = response.pic == "_default_" ? avtar : response.pic;
           localStorage.setItem("blocked", JSON.stringify(response.blocked));
-          if (!(gender && myLang)) {
-            displayBlock(["nativeLang"]);
-          }
         } else {
           logout();
         }
@@ -1566,7 +1545,7 @@
       }
 
       const peer = new Peer(undefined, {
-        host: "comrade-peer-server.glitch.me",
+        host: "comeet-peer-sever.onrender.com",
         port: 443,
         path: "/peerjs",
         secure: true,
@@ -1808,10 +1787,11 @@
           ) {
             if (data.status) {
               showInitialPage("Initializing AI Translation");
-              startTranslation(myLang, data.lang);
+              startTranslation(data.fromLang, data.toLang);
             } else {
               showInitialPage("Ending AI Translation");
               translator.stopContinuousRecognitionAsync();
+              clearInterval(tokenRefreshInterval);
             }
           }
 
@@ -3017,7 +2997,7 @@
         }
       }
 
-      function searchYouTube(query) {
+      /*   function searchYouTube(query) {
         $(".ytResult").remove();
         const apiUrl = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&part=snippet&q=${query}&maxResults=10&type=video`;
 
@@ -3050,7 +3030,7 @@
           .catch((error) => {
             console.error("Error fetching data:", error);
           });
-      }
+      } */
 
       //searchYouTube("New Songs")
 
@@ -3746,6 +3726,14 @@
       }
 
       async function startTranslation(fromLang, toLang) {
+        const token = await getAzureToken();
+
+        // Lazy init speech config for this session
+        const speechConfig =
+          SpeechSDK.SpeechTranslationConfig.fromAuthorizationToken(
+            token,
+            "westus"
+          );
         speechConfig.speechRecognitionLanguage = fromLang;
         speechConfig.addTargetLanguage(toLang);
 
@@ -3761,45 +3749,42 @@
           audioConfig
         );
 
-        // translator.recognizing = (s, e) => {
-        //   console.log(`Recognizing: ${e.result.text}`);
-        // };
-
         translator.recognized = (s, e) => {
           if (e.result.reason === SpeechSDK.ResultReason.TranslatedSpeech) {
+            const translation = e.result.translations.get(toLang);
             console.log(`Recognized: ${e.result.text}`);
-            console.log(`Translation: ${e.result.translations.get(toLang)}`);
-            let translation = e.result.translations.get(toLang);
-            //transfer to asker
-            let r = {
-              username: username,
-              callId: callId,
-              callStatus: "TR",
-              text: translation,
-            };
+            console.log(`Translation: ${translation}`);
+            const r = { username, callId, callStatus: "TR", text: translation };
             channel.publish(channelName, r);
           }
         };
 
-        translator.canceled = (s, e) => {
-          console.error(`Canceled: ${e.reason}`);
-        };
-
-        translator.sessionStarted = (s, e) => {
-          console.log("Session started");
-        };
-
-        translator.sessionStopped = (s, e) => {
-          console.log("Session stopped");
-        };
+        translator.canceled = (s, e) => console.error(`Canceled: ${e.reason}`);
+        translator.sessionStarted = () => console.log("Session started");
+        translator.sessionStopped = () => console.log("Session stopped");
 
         translator.startContinuousRecognitionAsync();
+
+        // Start refreshing token every 9 minutes
+        tokenRefreshInterval = setInterval(async () => {
+          await fetchAzureToken();
+          speechConfig.authorizationToken = azureToken;
+        }, 9 * 60 * 1000);
+
+        return translator;
       }
 
       async function speak(text) {
-        const audioConfig = SpeechSDK.AudioConfig.fromDefaultSpeakerOutput();
+        const token = await getAzureToken();
+
+        const speechConfig =
+          SpeechSDK.SpeechTranslationConfig.fromAuthorizationToken(
+            token,
+            "westus"
+          );
         speechConfig.speechSynthesisVoiceName = speaker.ShortName;
 
+        const audioConfig = SpeechSDK.AudioConfig.fromDefaultSpeakerOutput();
         const synthesizer = new SpeechSDK.SpeechSynthesizer(
           speechConfig,
           audioConfig
@@ -3807,47 +3792,63 @@
 
         synthesizer.speakTextAsync(
           text,
-          function (result) {
+          (result) => {
             if (
-              result.reason ===
+              result.reason !==
               SpeechSDK.ResultReason.SynthesizingAudioCompleted
             ) {
-            } else {
               console.error(
-                "Speech synthesis canceled, " +
-                  result.errorDetails +
-                  "\nDid you set the speech resource key and region values?"
+                "Speech synthesis canceled: " + result.errorDetails
               );
             }
             synthesizer.close();
           },
-          function (err) {
-            console.trace("err - " + err);
+          (err) => {
+            console.trace("TTS error:", err);
             synthesizer.close();
           }
         );
       }
+
       document.getElementById("srchLang").addEventListener("input", (event) => {
         const value = event.target.value;
         if (value.length > 0) {
           showLang(value);
         }
       });
+
       async function showLang(start) {
-        if (speaker) return;
-        $(".langChip").remove();
+        // it seraches and shows the lanuage only (during call)
+        console.log("searching for:", start);
+        $(".langChip2").remove();
+        if (start.length == 0) return;
         const languages = await getLang(true);
         languages.forEach((item) => {
           var ln = `${item.LocaleName.split(" ")[0]} (${item.DisplayName})`;
-          if (!ln.startsWith(start)) return;
+          let country = (item.LocaleName.match(/\(([^)]+)\)/) || [
+            ,
+            "",
+          ])[1].trim();
+          if (!ln.toLowerCase().startsWith(start.toLowerCase())) return;
           var cf = item.Locale.split("-")[1].toLowerCase();
           var inHtml = `
-              <div class="langChip" onclick="setSpeaker(${languages.indexOf(
+              <div class="langChip2" onclick="setSpeaker(${languages.indexOf(
                 item
               )})">
 
                     <img src="https://flagcdn.com/w80/${cf}.png" alt="" />
-                    <p>${ln}</p>
+                    <div>
+                          <p>${ln}</p>
+                          <p class="text-white-50 fs-6">${country}</p>
+                        </div>
+                          <span class="material-symbols-outlined text-white">
+                          ${
+                            item.DisplayName == speaker?.DisplayName &&
+                            item.Locale == speaker?.Locale
+                              ? "radio_button_checked"
+                              : " radio_button_unchecked"
+                          }
+                        </span>
                   </div>
             `;
           $("#langCont").append(inHtml);
@@ -3863,16 +3864,33 @@
         let already = [];
         languages.forEach((lang) => {
           let lName = lang.LocaleName.split(" ")[0];
-          if (lName.startsWith(query) && !already.includes(lang.Locale)) {
+          let country = (lang.LocaleName.match(/\(([^)]+)\)/) || [
+            ,
+            "",
+          ])[1].trim();
+
+          if (
+            lName.toLowerCase().startsWith(query.toLowerCase()) &&
+            !already.includes(lang.Locale)
+          ) {
             var cf = lang.Locale.split("-")[1].toLowerCase();
             var inHtml = `
-              <div class="langChip2" onclick="setLang('${languages.indexOf(
-                lang
-              )}')">
-
-                    <img src="https://flagcdn.com/w80/${cf}.png" alt="" />
-                    <p>${lName}</p>
-                  </div>
+                   <div class="langChip2" onclick="setLang('${languages.indexOf(
+                     lang
+                   )}')">
+                        <img src="https://flagcdn.com/w80/${cf}.png" alt="" />
+                        <div>
+                          <p>${lName}</p>
+                          <p class="text-white-50 fs-6">${country}</p>
+                        </div>
+                        <span class="material-symbols-outlined text-white">
+                          ${
+                            myLang == lang.Locale
+                              ? "radio_button_checked"
+                              : " radio_button_unchecked"
+                          }
+                        </span>
+                      </div>
             `;
 
             already.push(lang.Locale);
@@ -3885,80 +3903,50 @@
       function setSpeaker(index) {
         $(".langChip").remove();
         speaker = filterLang[index];
-        var cf = speaker.Locale.split("-")[1].toLowerCase();
-        var ln = `${speaker.LocaleName.split(" ")[0]} (${speaker.DisplayName})`;
-        var inHtml = `
-        <div class="langChip" style="
-            width: 95vw;
-            background-color: white;
-            grid-template-columns:30px auto 30px;
-            
-        ">
-            <img src="https://flagcdn.com/w80/${cf}.png" alt="">
-            <p style="
-                color: black;
-                font-weight: bold; text-align:left;">${ln}</p>
-
-                <i class="material-symbols-rounded jk" style="color: black" onclick="resetSpeaker()">
-                  close
-                </i>
-          </div>
-        `;
-        $("#langCont").append(inHtml);
-      }
-      function resetSpeaker() {
-        $(".langChip").remove();
-        speaker = "";
+        var ln = `${speaker.LocaleName.split(" ")[0]}`;
+        document.getElementById("toLanguage").innerText = ln;
         showLang(document.getElementById("srchLang").value);
       }
-      function resetLang() {
-        $(".langChip2").remove();
-        myLang = "";
-        displayLang(document.getElementById("disLang").value);
-      }
+
       let filterLang = [];
       let requested = false;
       async function getLang(gender) {
+        const token = await getAzureToken();
         if (requested) return filterLang;
         requested = true;
+
         const req = await fetch(
           "https://westus.tts.speech.microsoft.com/cognitiveservices/voices/list",
-          {
-            method: "GET",
-            headers: { "Ocp-Apim-Subscription-Key": subscriptionKey },
-          }
+          { headers: { Authorization: `Bearer ${token}` } }
         );
+
         const langs = await req.json();
+        filterLang = [];
         if (gender) {
           langs.forEach((lang) => {
-            if (reciGen == "Others") {
+            if (reciGen === "Others" || lang.Gender === reciGen)
               filterLang.push(lang);
-            }
-            if (lang.Gender == reciGen) {
-              filterLang.push(lang);
-            }
           });
         } else {
           filterLang = langs;
         }
-
         return filterLang;
       }
 
       function showLanguage() {
         displayBlock(["lang"]);
-        document.getElementById("rt").innerText = `Hi ${name}`;
       }
       function hideLanguage() {
         displayNone(["lang"]);
       }
       function askTranslate() {
-        if (!speaker) return;
+        if (!speaker || !myLang) return;
         let r = {
           username: username,
           callId: callId,
           callStatus: "T",
-          lang: speaker.Locale.split("-")[0],
+          toLang: speaker.Locale.split("-")[0],
+          fromLang: myLang,
           status: true,
         };
         channel.publish(channelName, r);
@@ -3989,54 +3977,15 @@
           .setAttribute("onclick", "showLanguage()");
         document.getElementById("trans").style.animation = "none";
         showInitialPage("Ending AI Translation");
-        resetSpeaker();
       }
-      function setGender(gen) {
-        gender = gen;
-        let elements = document.getElementsByClassName("g");
-        for (element of elements) {
-          element.classList.remove("activeGender");
-        }
-        document.getElementById(gen).classList.add("activeGender");
-      }
+
       function setLang(index) {
-        $(".langChip2").remove();
         let item = filterLang[index];
         myLang = item.Locale;
-        var cf = item.Locale.split("-")[1].toLowerCase();
-        var ln = `${item.LocaleName.split(" ")[0]}`;
-        var inHtml = `
-        <div class="langChip2" style="
-            width: 95vw;
-            background-color: wheat;
-            grid-template-columns:30px auto 30px;
-            
-        ">
-            <img src="https://flagcdn.com/w80/${cf}.png" alt="">
-            <p style="
-                color: black;
-                font-weight: bold; text-align:left;">${ln}</p>
-
-                <i class="material-symbols-rounded jk" style="color: black" onclick="resetLang()">
-                  close
-                </i>
-          </div>
-        `;
-        $("#natLangCont").append(inHtml);
-      }
-
-      async function saveSettings() {
-        if (gender && myLang) {
-          const data = {
-            SESSION: SESSION,
-            num: SIM,
-            gender: gender,
-            language: myLang,
-          };
-          const url = "https://comradeeco.pythonanywhere.com/comeet/saveAiData";
-          const response = await fetchApi(url, data);
-          displayNone(["nativeLang"]);
-        }
+        let lName = item.LocaleName.split(" ")[0];
+        document.getElementById("fromLanguage").innerText = lName;
+        let val = document.getElementById("disLang").value;
+        displayLang({ target: { value: val } });
       }
 
       function showInitialPage(msg) {
