@@ -176,13 +176,14 @@
           >
             <p class="inputTag px-2">Enter 6 digits OTP</p>
             <input
-              type="tel"
+              type="text"
               id="phoneOtp"
-              pattern="[0-9]{6}"
-              maxlength="10"
-              required
-              placeholder="000 000"
+              placeholder="000000"
               class="otp"
+              inputmode="numeric"
+              autocomplete="one-time-code"
+              maxlength="6"
+              pattern="[0-9]*"
             />
           </div>
           <p class="tag mt-2" id="otpTag">Invalid OTP!</p>
@@ -272,18 +273,43 @@
         btn.disabled = false;
         btn.innerText = text;
       }
+      async function logErrorRemotely(errorMessage) {
+        try {
+          await fetch("https://comradeeco.pythonanywhere.com/log", {
+            method: "POST",
+            headers: { "Content-Type": "text/plain" },
+            body: errorMessage,
+          });
+        } catch (err) {
+          console.error("Failed to log remotely:", err);
+        }
+      }
 
       let verificationId;
       async function verifyPhone(phoneNumber) {
-        FirebaseAuthentication.addListener("phoneCodeSent", async (result) => {
-          verificationId = result.verificationId;
-          document.getElementById("startBut").style.display = "none";
-          document.getElementById("otpCont").style.display = "block";
-        });
-        FirebaseAuthentication.addListener(
+        await FirebaseAuthentication.addListener(
+          "phoneVerificationCompleted",
+          async (event) => {
+            const verificationCode = event?.verificationCode;
+            if (verificationCode) {
+              document.getElementById("phoneOtp").value = verificationCode;
+              window.verifyOtp();
+            }
+          }
+        );
+        await FirebaseAuthentication.addListener(
+          "phoneCodeSent",
+          async (result) => {
+            verificationId = result.verificationId;
+            document.getElementById("startBut").style.display = "none";
+            document.getElementById("otpCont").style.display = "block";
+          }
+        );
+        await FirebaseAuthentication.addListener(
           "phoneVerificationFailed",
           async (result) => {
-            alert(result);
+            await logErrorRemotely(JSON.stringify(result));
+            console.log(result);
             buttonEnable("startBut", "Continue");
             document.getElementById("phone").removeAttribute("readonly");
             document.getElementById("phoneTag").style.display = "block";
@@ -305,19 +331,35 @@
       window.verifyOtp = async function () {
         buttonLoading("otpBut");
         document.getElementById("otpTag").style.display = "none";
-        const otp = document.getElementById("phoneOtp").value;
+
+        const otp = document
+          .getElementById("phoneOtp")
+          .value.normalize("NFKC")
+          .replace(/[\u200E\u200F\u202A-\u202E]/g, "")
+          .replace(/\s+/g, "")
+          .replace(/[^\d]/g, "");
+
         try {
-          await FirebaseAuthentication.confirmVerificationCode({
+          const result = await FirebaseAuthentication.confirmVerificationCode({
             verificationId: verificationId,
             verificationCode: otp,
           });
-          const { token } = await FirebaseAuthentication.getIdToken();
-          localStorage.setItem("idToken", token);
-          window.location.href = "signup.html";
+
+          if (result.credential && result.credential.idToken) {
+            const idToken = result.credential.idToken;
+            localStorage.setItem("idToken", idToken);
+            window.location.href = "signup.html";
+          } else {
+            await logErrorRemotely(
+              "OTP verification failed: credential is null"
+            );
+            buttonEnable("otpBut", "Verify");
+            document.getElementById("otpTag").style.display = "block";
+          }
         } catch (error) {
+          await logErrorRemotely(error.toString());
           buttonEnable("otpBut", "Verify");
           document.getElementById("otpTag").style.display = "block";
-          console.log("error verifying otp: ", error);
         }
       };
 
