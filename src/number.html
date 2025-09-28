@@ -287,13 +287,18 @@
 
       let verificationId;
       async function verifyPhone(phoneNumber) {
+        // Listen for ID token changes
         await FirebaseAuthentication.addListener(
-          "phoneVerificationCompleted",
+          "idTokenChange",
           async (event) => {
-            const verificationCode = event?.verificationCode;
-            if (verificationCode) {
-              document.getElementById("phoneOtp").value = verificationCode;
-              window.verifyOtp();
+            if (event?.token) {
+              localStorage.setItem("idToken", event?.token);
+              window.location.href = "signup.html";
+            } else {
+              await logErrorRemotely(
+                `idTokenChange event: ${JSON.stringify(event)}`
+              );
+              console.log("idTokenChange event:", event);
             }
           }
         );
@@ -351,7 +356,9 @@
             window.location.href = "signup.html";
           } else {
             await logErrorRemotely(
-              "OTP verification failed: credential is null"
+              `OTP verification failed: credential is null | Full result: ${JSON.stringify(
+                result
+              )}`
             );
             buttonEnable("otpBut", "Verify");
             document.getElementById("otpTag").style.display = "block";

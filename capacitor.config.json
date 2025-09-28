@@ -8,7 +8,7 @@
     },
     "FirebaseAuthentication": {
       "authDomain": null,
-      "skipNativeAuth": true,
+      "skipNativeAuth": false,
       "providers": ["phone"]
     }
   },
