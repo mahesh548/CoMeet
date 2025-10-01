@@ -411,8 +411,27 @@
       }
       getNum();
 
-      function parseNumber(num) {
-        return num.slice(num.length - 10, num.length);
+      function parseNumber(input) {
+        if (!input) return "";
+
+        // ensure it's a string
+        input = String(input);
+
+        // remove all non-digit characters
+        let digits = input.replace(/\D/g, "");
+
+        // remove valid Indian prefixes
+        if (digits.startsWith("91") && digits.length > 10) {
+          digits = digits.slice(2);
+        }
+
+        // now digits must be exactly 10
+        if (digits.length !== 10) return "";
+
+        // optionally, you can reject numbers starting with 0 or invalid ranges
+        if (!/^[6-9]\d{9}$/.test(digits)) return ""; // Indian mobile numbers start with 6-9
+
+        return digits; // pure 10-digit Indian number
       }
 
       window.autoFill = async function autoFill(index) {
@@ -425,7 +444,12 @@
 
       async function check_num() {
         const num = parseNumber(document.getElementById("phone").value);
-        if (num.length != 10) return;
+        if (num.length != 10) {
+          buttonEnable("startBut", "Continue");
+          document.getElementById("phone").removeAttribute("readonly");
+          document.getElementById("phoneTag").style.display = "block";
+          return;
+        }
         buttonLoading("startBut");
         document.getElementById("phoneTag").style.display = "none";
         document.getElementById("phone").setAttribute("readonly", true);

@@ -66,30 +66,29 @@
       const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
       async function validateEmail(email) {
         var result = emailRegex.test(email);
-        console.log(result);
-        if (result != true) {
+        if (!result) {
           document.getElementById("email").style.border = "1.5px solid red";
           document.getElementById("emailTag").style.display = "block";
           document.getElementById("emailTag").innerText = "Invalid Email!";
+          return false;
         } else {
           const data = { email: email };
           const url =
             "https://comradeeco.pythonanywhere.com/comeet/check_email";
-
-          console.log(response);
+          const response = await fetchApi(url, data);
           if (response.status) {
             document.getElementById("email").style.border = "1.5px solid red";
             document.getElementById("emailTag").style.display = "block";
             document.getElementById("emailTag").innerText =
               "Email Already Exist!";
-            result = false;
+            return false;
           } else {
             document.getElementById("email").style.border =
               "1.5px solid #ffffff40";
             document.getElementById("emailTag").style.display = "none";
+            return true;
           }
         }
-        return result;
       }
       function validateName(name) {
         var result = name.length > 0;
@@ -106,7 +105,7 @@
       async function signUP() {
         var name = document.getElementById("name").value;
         var email = document.getElementById("email").value;
-        const checkEmail = validateEmail(email);
+        const checkEmail = await validateEmail(email);
         if (validateName(name) && checkEmail && gender) {
           console.log(email);
           console.log(name);
