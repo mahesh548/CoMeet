@@ -2,9 +2,26 @@
   <img src="https://github.com/mahesh548/CoMeet/blob/main/src/assets/imgs/logo_app.png?raw=true" width="150"/>
 </div>
 
-# CoMeet - Peer-to-Peer Audio/Video Calling App
+<h1 align="center">CoMeet - P2P  Calling App with Live Translation</h1>
+<p align="center"><i>CoMeet is a high-quality, feature-rich, peer-to-peer audio and video calling application designed for seamless communication between users. With the added bonus of interactive stickers, real-time language translation, and excellent video quality, CoMeet is the go-to app for staying connected with friends, family, and colleagues.</i></p>
 
-CoMeet is a high-quality, feature-rich, peer-to-peer audio and video calling application designed for seamless communication between users. With the added bonus of interactive stickers, real-time language translation, and excellent video quality, CoMeet is the go-to app for staying connected with friends, family, and colleagues.
+<p align="center">
+  <a href="https://play.google.com/store/apps/details?id=com.call.comrade">
+  <img src="https://img.shields.io/badge/Google%20Play-Live-blue?style=for-the-badge&logo=googleplay" />
+</a>
+  <img src="https://img.shields.io/badge/Frontend-Capacitor-blue?style=for-the-badge&logo=capacitor" />
+  <img src="https://img.shields.io/badge/Azure-Cognitive-blue?style=for-the-badge&logo=microsoftazure" />
+  <img src="https://img.shields.io/badge/Firebase-Authentication-blue?style=for-the-badge&logo=firebase" />
+  <img src="https://img.shields.io/badge/P2P-powered-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Partial-Bootstrap-7952B3?style=for-the-badge&logo=bootstrap" />
+  <img src="https://img.shields.io/badge/Status-Completed-brightgreen?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/version-17.0-blue?style=for-the-badge" />
+  <a href="https://github.com/mahesh548/CoMeet/blob/28f19dfd45a2cf32bf3a01c00579b3f522a920b0/LICENSE">
+  <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" />
+  </a>
+</p>
+
+---
 
 ## Features
 
@@ -15,9 +32,12 @@ CoMeet is a high-quality, feature-rich, peer-to-peer audio and video calling app
 - **Call Notifications**: Never miss an incoming call with smart push notifications.
 - **Block Callers**: Easily block users who aren't on your contact list for added privacy.
 
+---
+
 ## Tech Stack
 
 - **Frontend**:
+  - **Capacitor JS** (Wrapper that runs web app as native application and provide bridge to use native APIs.)
   - **Vanilla JavaScript** (for custom interactive functionality)
   - **HTML** & **CSS** (for the structure and styling of the app)
   - **Bootstrap** (for responsive design and UI components)
@@ -25,14 +45,14 @@ CoMeet is a high-quality, feature-rich, peer-to-peer audio and video calling app
 - **Backend**:
 
   - **Flask (Python)** – A lightweight framework for building RESTful APIs and handling server-side functionality.
-  - The original backend code was built using **Flask** to handle user data and communication between clients. However, the code is not included in the repository, as it is being replaced by a **Node.js backend** for better scalability and performance.
 
-- **Cloud Storage**:
-  - Firebase (for notifications and real-time data synchronization)
+- **Authentication**:
+  - Firebase Phone Authentication
 - **Third-Party Services**:
   - Azure Cognitive Services (for AI-powered language translation)
+  - Ably for realtime communications.
 - **Deployment**:
-  - Google Play Store (app distribution)
+  - Google Play Store
 
 ## Installation
 
@@ -77,26 +97,26 @@ CoMeet is a high-quality, feature-rich, peer-to-peer audio and video calling app
   </a>
 </div>
 
+## Website
+
+[![Website](https://img.shields.io/badge/CoMeet-Know_More-green?style=for-the-badge&logo=google-chrome)](https://comeet.datanation.in/)
+
 <br/>
-
-<div align="center">
-
-> 🛠️ **Note:**  
-> CoMeet is currently in **Closed Testing**.  
-> The app will be **publicly available soon** on the Play Store. Stay tuned!
-
-</div>
 
 ## Screenshots
 
-<img src="https://github.com/mahesh548/CoMeet/blob/main/playstore/Graphics/Phone/1.png?raw=true" alt="CoMeet - Home Screen" width="200"/>
-*Sync contacts for easy access and instant calls*
-
-<img src="https://github.com/mahesh548/CoMeet/blob/main/playstore/Graphics/Phone/4.png?raw=true" alt="CoMeet - Video Call" width="200"/>
-*Break language barriers on call with live translation*
-
-<img src="https://github.com/mahesh548/CoMeet/blob/main/playstore/Graphics/Phone/3.png?raw=true" alt="CoMeet - Video Call" width="200"/>
-*Add some fun to your call with playful stickers*
+<table>
+  <tr>
+    <td><img src="https://github.com/mahesh548/CoMeet/blob/main/playstore/Graphics/Phone/1.png?raw=true" alt="Screen 1" width="200"/></td>
+    <td><img src="https://github.com/mahesh548/CoMeet/blob/main/playstore/Graphics/Phone/4.png?raw=true" alt="Screen 2" width="200"/></td>
+    <td><img src="https://github.com/mahesh548/CoMeet/blob/main/playstore/Graphics/Phone/3.png?raw=true" alt="Screen 3" width="200"/></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/mahesh548/CoMeet/blob/main/playstore/Graphics/Phone/2.png?raw=true" alt="Screen 4" width="200"/></td>
+    <td><img src="https://github.com/mahesh548/CoMeet/blob/main/playstore/Graphics/Phone/5.png?raw=true" alt="Screen 5" width="200"/></td>
+    <td></td>
+  </tr>
+</table>
 
 ## Contributing
 
